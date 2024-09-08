@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Style src="MainMenu.uss"/>
+    
+    <!-- Root container positioned in the bottom-right corner -->
+    <ui:VisualElement class="root">
+        <!-- Project title -->
+        <ui:Label 
+            tabindex="-1" 
+            text="Project Funbells" 
+            parse-escape-sequences="true" 
+            display-tooltip-when-elided="true" 
+            style="align-self: center; align-items: auto; -unity-font-style: bold; font-size: 18px;" 
+        />
+        
+        <!-- Start button -->
+        <ui:Button 
+            text="Start" 
+            parse-escape-sequences="true" 
+            display-tooltip-when-elided="true" 
+            name="startButton" 
+            style="align-self: center; font-size: 14px;" 
+        />
+    </ui:VisualElement>
+</ui:UXML>

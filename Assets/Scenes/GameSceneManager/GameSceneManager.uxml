@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    
+    <!-- Link the stylesheet -->
+    <ui:Style src="GameSceneManager.uss" />
+
+    <!-- Root container for the UI elements -->
+    <ui:VisualElement class="root">
+        <!-- Scene buttons -->
+        <ui:Button text="Scene 1 Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="scene1Button" />
+        <ui:Button text="Scene 2 Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="scene2Button" />
+        <ui:Button text="Scene 3 Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="scene3Button" />
+        
+        <!-- Score control buttons -->
+        <ui:Button text="Increment Score" parse-escape-sequences="true" display-tooltip-when-elided="true" name="incrementScoreButton" />
+        <ui:Button text="Decrement Score" parse-escape-sequences="true" display-tooltip-when-elided="true" name="decrementScoreButton" />
+
+        <!-- Score label -->
+        <ui:Label tabindex="-1" text="ScoreLabel" parse-escape-sequences="true" display-tooltip-when-elided="true" name="scoreLabel" />
+    </ui:VisualElement>
+</ui:UXML>
