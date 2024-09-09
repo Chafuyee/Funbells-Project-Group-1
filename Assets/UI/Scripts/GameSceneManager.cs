@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using System.Collections;  // Required for Coroutines
 
 public class GameSceneManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class GameSceneManager : MonoBehaviour
     private Button incrementScoreButton; // Add the increment button
     private Button decrementScoreButton; // Add the decrement button
     private Label scoreLabel;
+
+    // Interval for refreshing the score UI
+    public float refreshInterval = 0.1f; // Refresh every 1 second
 
     void OnEnable()
     {
@@ -33,16 +37,15 @@ public class GameSceneManager : MonoBehaviour
         incrementScoreButton.clicked += IncrementScore;
         decrementScoreButton.clicked += DecrementScore;
 
-        // Load the saved score and update the score display
-        GameManager.instance.LoadScore();  // Load the saved score
-        UpdateScoreUI();  // Update the UI with the loaded score
+        // Start the Coroutine to refresh the score UI periodically
+        StartCoroutine(RefreshScoreUI());
     }
 
     // Function to handle scene switching
     void ChangeScene(string sceneName)
     {
         // Save the score before switching scenes
-        GameManager.instance.SaveScore();
+        GameManager.instance.Save();
 
         // Load the new scene
         SceneManager.LoadScene(sceneName);
@@ -51,15 +54,25 @@ public class GameSceneManager : MonoBehaviour
     // Increment the score and update the label
     void IncrementScore()
     {
-        GameManager.instance.AddScore(1);  // Increment the score by 1
-        UpdateScoreUI();  // Refresh the score display
+        int currentScore = GameManager.instance.GetScore();  // Get the current score
+        GameManager.instance.SetScore(currentScore + 1);  // Increment the score by 1
     }
 
     // Decrement the score and update the label
     void DecrementScore()
     {
-        GameManager.instance.AddScore(-1);  // Decrement the score by 1
-        UpdateScoreUI();  // Refresh the score display
+        int currentScore = GameManager.instance.GetScore();  // Get the current score
+        GameManager.instance.SetScore(currentScore - 1);  // Decrement the score by 1
+    }
+
+    // Coroutine to refresh the score UI periodically
+    IEnumerator RefreshScoreUI()
+    {
+        while (true)
+        {
+            UpdateScoreUI();  // Refresh the score display
+            yield return new WaitForSeconds(refreshInterval);  // Wait for the refresh interval
+        }
     }
 
     // Update the score label from GameManager

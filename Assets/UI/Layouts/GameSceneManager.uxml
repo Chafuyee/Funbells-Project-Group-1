@@ -1,20 +1,13 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    
-    <!-- Link the stylesheet -->
-    <ui:Style src="GameSceneManager.uss" />
-
-    <!-- Root container for the UI elements -->
-    <ui:VisualElement class="root">
-        <!-- Scene buttons -->
-        <ui:Button text="Scene 1 Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="scene1Button" />
-        <ui:Button text="Scene 2 Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="scene2Button" />
-        <ui:Button text="Scene 3 Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="scene3Button" />
-        
-        <!-- Score control buttons -->
-        <ui:Button text="Increment Score" parse-escape-sequences="true" display-tooltip-when-elided="true" name="incrementScoreButton" />
-        <ui:Button text="Decrement Score" parse-escape-sequences="true" display-tooltip-when-elided="true" name="decrementScoreButton" />
-
-        <!-- Score label -->
-        <ui:Label tabindex="-1" text="ScoreLabel" parse-escape-sequences="true" display-tooltip-when-elided="true" name="scoreLabel" />
+    <Style src="project://database/Assets/UI/Styles/GameSceneManager.uss?fileID=7433441132597879392&amp;guid=e6a82a2817c079d43826ca05a79691e2&amp;type=3#GameSceneManager" />
+    <ui:VisualElement name="root" style="flex-grow: 1; width: auto; align-items: flex-end; justify-content: flex-end;">
+        <ui:VisualElement name="window" style="flex-grow: 1; width: 200px; justify-content: flex-end;">
+            <ui:Button text="Scene 1 Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="scene1Button" />
+            <ui:Button text="Scene 2 Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="scene2Button" />
+            <ui:Button text="Scene 3 Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="scene3Button" />
+            <ui:Button text="Increment Score" parse-escape-sequences="true" display-tooltip-when-elided="true" name="incrementScoreButton" />
+            <ui:Button text="Decrement Score" parse-escape-sequences="true" display-tooltip-when-elided="true" name="decrementScoreButton" />
+            <ui:Label tabindex="-1" text="ScoreLabel" parse-escape-sequences="true" display-tooltip-when-elided="true" name="scoreLabel" style="-unity-text-align: upper-center;" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
