@@ -1,4 +1,0 @@
-/* Root container for the menu */
-.root {
-    padding: 10px;
-}
