@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private Animator animator;
 
-    public float speed = 5.0f;
+    public float speed = 1f;
     private float angleAdjustment = 0.0f;
     private float forwardInput;
     private float previousForwardInput;
