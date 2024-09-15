@@ -260,30 +260,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ending Position Dumbell
       objectReference: {fileID: 0}
+    - target: {fileID: 2709907994572542152, guid: 46a37224061a67f4fb211d7d2fac7a1a,
+        type: 3}
+      propertyPath: m_TagString
+      value: EndingPositionGhost
+      objectReference: {fileID: 0}
     - target: {fileID: 3857771778368665667, guid: 46a37224061a67f4fb211d7d2fac7a1a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 4ff4bf42ffc12e34a9c53b2f216f5442,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 69999ab9848dee349bd077498c3b5bbd, type: 2}
     - target: {fileID: 5787828384870574683, guid: 46a37224061a67f4fb211d7d2fac7a1a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 4ff4bf42ffc12e34a9c53b2f216f5442,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 69999ab9848dee349bd077498c3b5bbd, type: 2}
     - target: {fileID: 5995091727525288820, guid: 46a37224061a67f4fb211d7d2fac7a1a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 4ff4bf42ffc12e34a9c53b2f216f5442,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 69999ab9848dee349bd077498c3b5bbd, type: 2}
     - target: {fileID: 7210124557984543098, guid: 46a37224061a67f4fb211d7d2fac7a1a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 4ff4bf42ffc12e34a9c53b2f216f5442,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 69999ab9848dee349bd077498c3b5bbd, type: 2}
     - target: {fileID: 7592906017111131896, guid: 46a37224061a67f4fb211d7d2fac7a1a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -338,20 +339,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 4ff4bf42ffc12e34a9c53b2f216f5442,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 69999ab9848dee349bd077498c3b5bbd, type: 2}
     - target: {fileID: 8957842634316678646, guid: 46a37224061a67f4fb211d7d2fac7a1a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 4ff4bf42ffc12e34a9c53b2f216f5442,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 69999ab9848dee349bd077498c3b5bbd, type: 2}
     - target: {fileID: 9116726234874949697, guid: 46a37224061a67f4fb211d7d2fac7a1a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 4ff4bf42ffc12e34a9c53b2f216f5442,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 69999ab9848dee349bd077498c3b5bbd, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -360,6 +358,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1364713670}
+    - targetCorrespondingSourceObject: {fileID: 2709907994572542152, guid: 46a37224061a67f4fb211d7d2fac7a1a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1364713672}
+    - targetCorrespondingSourceObject: {fileID: 2709907994572542152, guid: 46a37224061a67f4fb211d7d2fac7a1a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1364713671}
   m_SourcePrefab: {fileID: 100100000, guid: 46a37224061a67f4fb211d7d2fac7a1a, type: 3}
 --- !u!1001 &353286913
 PrefabInstance:
@@ -388,26 +394,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 4ff4bf42ffc12e34a9c53b2f216f5442,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 826549fe359a5054a9208980367b8f2d, type: 2}
     - target: {fileID: 5787828384870574683, guid: 46a37224061a67f4fb211d7d2fac7a1a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 4ff4bf42ffc12e34a9c53b2f216f5442,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 826549fe359a5054a9208980367b8f2d, type: 2}
     - target: {fileID: 5995091727525288820, guid: 46a37224061a67f4fb211d7d2fac7a1a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 4ff4bf42ffc12e34a9c53b2f216f5442,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 826549fe359a5054a9208980367b8f2d, type: 2}
     - target: {fileID: 7210124557984543098, guid: 46a37224061a67f4fb211d7d2fac7a1a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 4ff4bf42ffc12e34a9c53b2f216f5442,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 826549fe359a5054a9208980367b8f2d, type: 2}
     - target: {fileID: 7592906017111131896, guid: 46a37224061a67f4fb211d7d2fac7a1a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -462,20 +464,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 4ff4bf42ffc12e34a9c53b2f216f5442,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 826549fe359a5054a9208980367b8f2d, type: 2}
     - target: {fileID: 8957842634316678646, guid: 46a37224061a67f4fb211d7d2fac7a1a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 4ff4bf42ffc12e34a9c53b2f216f5442,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 826549fe359a5054a9208980367b8f2d, type: 2}
     - target: {fileID: 9116726234874949697, guid: 46a37224061a67f4fb211d7d2fac7a1a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 4ff4bf42ffc12e34a9c53b2f216f5442,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 826549fe359a5054a9208980367b8f2d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -484,6 +483,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1645107608}
+    - targetCorrespondingSourceObject: {fileID: 2709907994572542152, guid: 46a37224061a67f4fb211d7d2fac7a1a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1645107610}
+    - targetCorrespondingSourceObject: {fileID: 2709907994572542152, guid: 46a37224061a67f4fb211d7d2fac7a1a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1645107609}
   m_SourcePrefab: {fileID: 100100000, guid: 46a37224061a67f4fb211d7d2fac7a1a, type: 3}
 --- !u!1 &362030108
 GameObject:
@@ -496,7 +503,7 @@ GameObject:
   - component: {fileID: 362030109}
   - component: {fileID: 362030110}
   m_Layer: 0
-  m_Name: Right Hand Thumbs Up
+  m_Name: Right Hand Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -530,26 +537,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HandTrackingEvents: {fileID: 1497541071}
-  m_HandShapeOrPose: {fileID: 11400000, guid: 7fdd2afa44a436446bdb55fa7872a77d, type: 2}
+  m_HandShapeOrPose: {fileID: 11400000, guid: 19f67bcc69361634a82c70dcaa26700b, type: 2}
   m_TargetTransform: {fileID: 0}
   m_Background: {fileID: 0}
   m_GesturePerformed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 548231373}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Right Thumbs Up
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1364713670}
-        m_TargetAssemblyTypeName: SetEndingDumbell, Assembly-CSharp
+      - m_Target: {fileID: 1645107608}
+        m_TargetAssemblyTypeName: SetStartingDumbell, Assembly-CSharp
         m_MethodName: setPosition
         m_Mode: 1
         m_Arguments:
@@ -557,7 +552,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Right Thumbs Up
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   m_GestureEnded:
@@ -788,6 +783,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1948693200}
+    - target: {fileID: 4837942043424170029, guid: e2698219e3231e94c8765d49b9dd5cff,
+        type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5030734266366949665, guid: e2698219e3231e94c8765d49b9dd5cff,
         type: 3}
       propertyPath: m_BlockingMask.m_Bits
@@ -936,9 +936,9 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: Left Rabbit
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1645107608}
-        m_TargetAssemblyTypeName: SetStartingDumbell, Assembly-CSharp
+        m_CallState: 0
+      - m_Target: {fileID: 1364713670}
+        m_TargetAssemblyTypeName: SetEndingDumbell, Assembly-CSharp
         m_MethodName: setPosition
         m_Mode: 1
         m_Arguments:
@@ -1009,8 +1009,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 548231373}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1018,9 +1018,9 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: Right Rabbit
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1645107608}
-        m_TargetAssemblyTypeName: SetStartingDumbell, Assembly-CSharp
+        m_CallState: 0
+      - m_Target: {fileID: 1364713670}
+        m_TargetAssemblyTypeName: SetEndingDumbell, Assembly-CSharp
         m_MethodName: setPosition
         m_Mode: 1
         m_Arguments:
@@ -1139,6 +1139,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdb4e1d606f386640a551e961e942547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1364713671
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364713668}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.429591, y: 0.2332276, z: 0.2980929}
+  m_Center: {x: -0.03205669, y: 0.004500046, z: -0.01843746}
+--- !u!54 &1364713672
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364713668}
+  serializedVersion: 4
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1497541069
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,6 +1376,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec94dfc9d0caa464597d625ef5558a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1645107609
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645107606}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.429591, y: 0.23322761, z: 0.29809287}
+  m_Center: {x: -0.03205669, y: 0.0045000464, z: -0.01843746}
+--- !u!54 &1645107610
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645107606}
+  serializedVersion: 4
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1697981942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,7 +1435,7 @@ GameObject:
   - component: {fileID: 1697981943}
   - component: {fileID: 1697981944}
   m_Layer: 0
-  m_Name: Left Hand Thumbs Up
+  m_Name: Left Hand Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1373,7 +1469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HandTrackingEvents: {fileID: 1984757628}
-  m_HandShapeOrPose: {fileID: 11400000, guid: 7fdd2afa44a436446bdb55fa7872a77d, type: 2}
+  m_HandShapeOrPose: {fileID: 11400000, guid: 19f67bcc69361634a82c70dcaa26700b, type: 2}
   m_TargetTransform: {fileID: 0}
   m_Background: {fileID: 0}
   m_GesturePerformed:
@@ -1388,11 +1484,11 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Left Hand Thumbs Up
+          m_StringArgument: Left Hand Point
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1364713670}
-        m_TargetAssemblyTypeName: SetEndingDumbell, Assembly-CSharp
+        m_CallState: 0
+      - m_Target: {fileID: 1645107608}
+        m_TargetAssemblyTypeName: SetStartingDumbell, Assembly-CSharp
         m_MethodName: setPosition
         m_Mode: 1
         m_Arguments:
@@ -1496,8 +1592,22 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2709907994572542152, guid: 46a37224061a67f4fb211d7d2fac7a1a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1967318225}
+    - targetCorrespondingSourceObject: {fileID: 2709907994572542152, guid: 46a37224061a67f4fb211d7d2fac7a1a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1967318224}
   m_SourcePrefab: {fileID: 100100000, guid: 46a37224061a67f4fb211d7d2fac7a1a, type: 3}
+--- !u!1 &1727452227 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2709907994572542152, guid: 46a37224061a67f4fb211d7d2fac7a1a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1724565014}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1808853647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1764,6 +1874,41 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1724565014}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1967318224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727452227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42569995a64a3e4dad6f2ed448704ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startDumbell: {fileID: 1645107606}
+  endDumbell: {fileID: 1364713668}
+--- !u!65 &1967318225
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727452227}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.48, y: 0.2, z: 0.23}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1984757626
 GameObject:
   m_ObjectHideFlags: 0

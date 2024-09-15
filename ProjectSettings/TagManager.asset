@@ -9,6 +9,7 @@ TagManager:
   - StartingPositionGhost
   - RightHand
   - LeftHand
+  - EndingPositionGhost
   layers:
   - Default
   - TransparentFX

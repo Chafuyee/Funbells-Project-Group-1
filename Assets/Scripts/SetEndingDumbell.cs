@@ -35,7 +35,6 @@ public class SetEndingDumbell : MonoBehaviour
                 {
                     leftHandPosition = leftHandPose.position;
                     leftHandRotation = leftHandPose.rotation;
-                    Debug.Log("Left Hand Position: " + leftHandPosition);
                 }
             }
 
@@ -47,7 +46,6 @@ public class SetEndingDumbell : MonoBehaviour
                 {
                     rightHandPosition = rightHandPose.position;
                     rightHandRotation = rightHandPose.rotation;
-                    Debug.Log("Right Hand Position: " + rightHandPosition);
                 }
             }
         }

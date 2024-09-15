@@ -16,35 +16,35 @@ MonoBehaviour:
   - m_FingerID: 0
     m_Targets:
     - m_ShapeType: 0
-      m_UpperTolerance: 0.832
-      m_LowerTolerance: 0.498
+      m_UpperTolerance: 0.892
+      m_LowerTolerance: 0.775
       m_Tolerance: 0
       m_Desired: 1
   - m_FingerID: 3
     m_Targets:
     - m_ShapeType: 0
-      m_UpperTolerance: 0.877
-      m_LowerTolerance: 0.498
+      m_UpperTolerance: 0.892
+      m_LowerTolerance: 0.814
       m_Tolerance: 0
       m_Desired: 1
   - m_FingerID: 4
     m_Targets:
     - m_ShapeType: 0
-      m_UpperTolerance: 0.918
-      m_LowerTolerance: 0.498
+      m_UpperTolerance: 0.794
+      m_LowerTolerance: 0.725
       m_Tolerance: 0
       m_Desired: 1
   - m_FingerID: 1
     m_Targets:
     - m_ShapeType: 0
-      m_UpperTolerance: 1
-      m_LowerTolerance: 0.704
+      m_UpperTolerance: 0.637
+      m_LowerTolerance: 0.784
       m_Tolerance: 0
       m_Desired: 0
   - m_FingerID: 2
     m_Targets:
     - m_ShapeType: 0
-      m_UpperTolerance: 1
-      m_LowerTolerance: 0.704
+      m_UpperTolerance: 0.784
+      m_LowerTolerance: 0.784
       m_Tolerance: 0
       m_Desired: 0
