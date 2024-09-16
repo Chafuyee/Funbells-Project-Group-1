@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Animator animator;
+    public AudioSource rockSound;
 
     public float speed = 1f;
     private float angleAdjustment = 0.0f;
@@ -50,6 +51,9 @@ public class PlayerMovement : MonoBehaviour
 
         // Get the current forwardInput
         forwardInput = Input.GetAxis("Vertical");
+        if (forwardInput == 0) {
+            rockSound.Play();
+        }
 
         // Calculate the ramp angle
         float height = rampTransform.localScale.y;
@@ -57,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
         float rampAngle = Mathf.Atan2(height, baseLength) * Mathf.Rad2Deg;
 
         // Move the player in the correct direction
-        Vector3 moveDirection = Quaternion.Euler(-18f + angleAdjustment, 0, 0) * Vector3.forward;
+        Vector3 moveDirection = Quaternion.Euler(-18.5f + angleAdjustment, 0, 0) * Vector3.forward;
         transform.Translate(moveDirection * Time.deltaTime * speed * forwardInput);
 
         // Set animation states
