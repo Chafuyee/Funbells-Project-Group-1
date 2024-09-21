@@ -17,8 +17,11 @@ public class SphereRotation : MonoBehaviour
         // Calculate rotation vector based on input
         Vector3 rotation = new Vector3(verticalInput, horizontalInput, 0);
 
-        // Apply rotation to the sphere
-        transform.Rotate(rotation * rotationSpeed * Time.deltaTime);
+    if (Input.GetAxis("Vertical") < 0) {
+        rotationSpeed = 33f;
+    }
+// Apply rotation to the sphere
+transform.Rotate(rotation * rotationSpeed * Time.deltaTime);
     }
 }
 
