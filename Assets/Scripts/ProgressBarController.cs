@@ -8,8 +8,8 @@ public class ProgressBarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int progress = GameManager.instance.GetProgress();
-        int maxProgress = GameManager.instance.GetMaxProgress();
+        int progress = GameManager.instance.GetSets();
+        int maxProgress = GameManager.instance.GetMaxSets();
         float progressPercent = (float) progress / (float) maxProgress;
         Debug.Log("Progress: " + progressPercent);
         progressBar.value = progressPercent;

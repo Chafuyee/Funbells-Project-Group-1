@@ -24,34 +24,42 @@ public class GameManager : MonoBehaviour
         }
 
         // SET DEFAULT VALUES
-        SetProgress(0);
-        SetMaxProgress(100);
+        SetSets(0);
+        SetMaxSets(3);
     }
 
     // EXAMPLE GETTERS AND SETTERS FOR PLAYER PROGRESS
 
-    public int GetProgress()
+    public int GetReps()
     {
-        // Debug.Log("Getting progress: " + GetValue<int>("Progress", 0));
-        return GetValue<int>("Progress", 0);
+        return GetValue<int>("Reps", 0);
     }
 
-    public void SetProgress(int progress)
+    public void SetReps(int reps)
     {
-        // Debug.Log("Setting progress to: " + progress);
-        SetValue<int>("Progress", progress);
+        SetValue<int>("Reps", reps);
+    }  
+
+    public int GetSets()
+    {
+        return GetValue<int>("Sets", 0);
     }
 
-    public int GetMaxProgress()
+    public void SetSets(int sets)
+    {
+        SetValue<int>("Sets", sets);
+    }
+
+    public int GetMaxSets()
     {
         // Debug.Log("Getting max progress: " + GetValue<int>("MaxProgress", 100));
-        return GetValue<int>("MaxProgress", 100);
+        return GetValue<int>("MaxSets", 100);
     }
 
-    public void SetMaxProgress(int maxProgress)
+    public void SetMaxSets(int maxSets)
     {
-        // Debug.Log("Setting max progress to: " + maxProgress);
-        SetValue<int>("MaxProgress", maxProgress);
+        // Debug.Log("Setting max progress to: " + maxSets);
+        SetValue<int>("MaxSets", maxSets);
     }
 
     public float GetForwardInput()
