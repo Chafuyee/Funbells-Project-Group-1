@@ -68,6 +68,13 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isPushing", forwardInput > 0);
         animator.SetBool("isHolding", forwardInput < 0);
         animator.SetBool("isIdle", forwardInput == 0);
+        if (forwardInput > 0)
+        {
+            speed = 3f;
+        } else if (forwardInput < 0) {
+            speed = 1f;
+        }
+
 
         // Detect if the player is swapping directions
         bool isSwapping = (previousForwardInput > 0 && forwardInput < 0) || (previousForwardInput < 0 && forwardInput > 0);
