@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; justify-content: center;">
+        <ui:Label text="PROJECT FUNBELLS" style="align-items: auto; align-self: center; -unity-font-style: bold; font-size: 30px; -unity-text-align: upper-center; white-space: normal; width: 176px;" />
+        <ui:Button text="START" parse-escape-sequences="true" display-tooltip-when-elided="true" name="myButton" style="align-self: center; font-size: 15px;" />
+    </ui:VisualElement>
+</ui:UXML>
