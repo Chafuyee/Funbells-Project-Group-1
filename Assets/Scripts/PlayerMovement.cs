@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         previousForwardInput = forwardInput;
 
         // Get the current forwardInput
-        forwardInput = Input.GetAxis("Vertical");
+        forwardInput = GameManager.instance.GetForwardInput();
         if (forwardInput == 0) {
             rockSound.Play();
         }
