@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isSwapping", isSwapping);
 
         // Update the camera position to follow the player
-        cameraOffset = new Vector3(0, 10, -10); // Desired offset of the camera from the player
+        cameraOffset = new Vector3(0, 12.5f, -10); // Desired offset of the camera from the player
         Vector3 desiredCameraPosition = transform.position + transform.TransformDirection(cameraOffset);
         cameraTransform.position = Vector3.Lerp(cameraTransform.position, desiredCameraPosition, cameraFollowSpeed * Time.deltaTime);
 
