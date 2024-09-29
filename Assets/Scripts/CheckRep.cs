@@ -6,8 +6,8 @@ public class CheckRep : MonoBehaviour
 {
     [SerializeField] public GameObject startDumbell;
     [SerializeField] public GameObject endDumbell;
-    private int reps;
-    private bool startReached;
+    public int reps;
+    public bool startReached;
 
     // Start is called before the first frame update
     void Start()

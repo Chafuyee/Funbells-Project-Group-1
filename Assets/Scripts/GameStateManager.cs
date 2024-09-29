@@ -8,19 +8,27 @@ public class GameStateManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject startMenu;
     public GameObject gameOverMenu;
+    
+    public AudioSource audioSource;
+
+    public GameObject startButton;
+    public GameObject continueButton;
+
+    [SerializeField] private CheckRep checkRepScript;
 
     public bool isPaused;
     private int currentState = 0;
-    private float stateDuration = 15f;
+    //private float stateDuration = 15f;
     private float stateTimer = 0f;
 
     public int optionalStateTrigger = 0;
-    private int maxStates = 10;
+    //private int maxStates = 10;
 
 
     // Start is called before the first frame update
     void Start()
     {
+
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);
         startMenu.SetActive(true);
@@ -31,22 +39,14 @@ public class GameStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isPaused)
-        {
-            stateTimer += Time.deltaTime;
 
-            if (stateTimer >= stateDuration || optionalStateTrigger > 0)
-            {
-                if (currentState < maxStates - 1)
-                {
-                    TriggerPauseMenu();
-                }
-                else
-                {
-                    EndGame();
-                }
-            }
+        int currentReps = checkRepScript.reps;
+
+        if (currentReps % 3 == 0) {
+            TriggerPauseMenu();
         }
+
+
     }
 
     void TriggerPauseMenu()
