@@ -16,7 +16,7 @@ public class CheckRep : MonoBehaviour
         startReached = false;
     }
     void Update(){
-        
+        Debug.Log(reps.ToString());
     }
 
     void OnTriggerEnter(Collider other){

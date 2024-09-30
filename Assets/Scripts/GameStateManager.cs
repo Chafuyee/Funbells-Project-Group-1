@@ -18,6 +18,7 @@ public class GameStateManager : MonoBehaviour
 
     public bool isPaused;
     private int currentState = 0;
+    private int currentReps = 0;
     //private float stateDuration = 15f;
     private float stateTimer = 0f;
 
@@ -40,7 +41,7 @@ public class GameStateManager : MonoBehaviour
     void Update()
     {
 
-        int currentReps = checkRepScript.reps;
+        currentReps = checkRepScript.reps;
 
         if (currentReps % 3 == 0) {
             TriggerPauseMenu();
