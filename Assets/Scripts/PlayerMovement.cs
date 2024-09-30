@@ -7,12 +7,14 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     public AudioSource rockSound;
 
+    public float rotationSpeed = 100f;
     public float speed = 1f;
     private float angleAdjustment = 0.0f;
     private float forwardInput;
     private float previousForwardInput;
 
     public Transform rampTransform;
+    public Transform rockTransform;
     public Transform cameraTransform; // Reference to the camera
     public Vector3 cameraOffset = new Vector3(0, 12, -10); // Desired offset of the camera from the player
     public float cameraFollowSpeed = 5.0f; // Speed at which the camera follows
@@ -71,10 +73,18 @@ public class PlayerMovement : MonoBehaviour
         if (forwardInput > 0)
         {
             speed = 3f;
+            rotationSpeed = 100f;
         } else if (forwardInput < 0) {
             speed = 1f;
+            rotationSpeed = 33f;
         }
 
+
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        Vector3 rotation = new Vector3(verticalInput, horizontalInput, 0);
+        rockTransform.Rotate(rotation * rotationSpeed * Time.deltaTime);
 
         // Detect if the player is swapping directions
         bool isSwapping = (previousForwardInput > 0 && forwardInput < 0) || (previousForwardInput < 0 && forwardInput > 0);

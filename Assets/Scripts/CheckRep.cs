@@ -16,29 +16,37 @@ public class CheckRep : MonoBehaviour
         startReached = false;
     }
     void Update(){
-        Debug.Log(reps.ToString());
+
     }
 
     void OnTriggerEnter(Collider other){
         
         if (gameObject.activeSelf){
             if (startDumbell.activeSelf && endDumbell.activeSelf){ //Both Dumbells are active
-                Debug.Log("Both dumbells are active");
+                //Debug.Log("Both dumbells are active");
                 // Check for collision
                 if(other.gameObject == startDumbell){
                     startReached = true;
-                    Debug.Log("Start Reached");
+                    //Debug.Log("Start Reached");
                 }
               
                 if(other.gameObject == endDumbell && startReached == true){
                     reps += 1;
                     startReached = false;
-                    Debug.Log("End Reached");
-                    Debug.Log(reps.ToString());
+                    //Debug.Log("End Reached");
+                    //Debug.Log(reps.ToString());
                 }
 
 
             }
         }
+    }
+
+    public int getReps() {
+        return reps;
+    }
+
+    public void addRep() {
+        reps += 1;
     }
 }

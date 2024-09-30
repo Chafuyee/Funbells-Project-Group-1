@@ -14,11 +14,11 @@ public class GameStateManager : MonoBehaviour
     public GameObject startButton;
     public GameObject continueButton;
 
-    [SerializeField] private CheckRep checkRepScript;
+    public CheckRep checkRepScript;
 
     public bool isPaused;
     private int currentState = 0;
-    private int currentReps = 0;
+    private int currentReps;
     //private float stateDuration = 15f;
     private float stateTimer = 0f;
 
@@ -30,6 +30,9 @@ public class GameStateManager : MonoBehaviour
     void Start()
     {
 
+        checkRepScript = GetComponent<CheckRep>();
+
+        currentReps = checkRepScript.getReps();
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);
         startMenu.SetActive(true);
@@ -40,13 +43,11 @@ public class GameStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        currentReps = checkRepScript.reps;
-
         if (currentReps % 3 == 0) {
             TriggerPauseMenu();
         }
 
+        checkRepScript.addRep();
 
     }
 
