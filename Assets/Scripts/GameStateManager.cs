@@ -43,9 +43,6 @@ public class GameStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentReps % 3 == 0) {
-            TriggerPauseMenu();
-        }
 
         checkRepScript.addRep();
 

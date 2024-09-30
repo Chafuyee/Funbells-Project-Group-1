@@ -87,10 +87,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // ROCK MOVEMENT
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 rotation = new Vector3(verticalInput, horizontalInput, 0);
+        Vector3 rotation = new Vector3(forwardInput, 0, 0);
         rockTransform.Rotate(rotation * rotationSpeed * Time.deltaTime);
 
         // Detect if the player is swapping directions

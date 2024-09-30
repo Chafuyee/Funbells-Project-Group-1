@@ -20,8 +20,5 @@ public class UpdateRepCounter : MonoBehaviour
     {
         worldRepCountText.text = repCount.ToString();
         repCount = checkRepScript.getReps();
-        checkRepScript.addRep();
-
-        Debug.Log("REPS:" + repCount.ToString());
     }
 }
