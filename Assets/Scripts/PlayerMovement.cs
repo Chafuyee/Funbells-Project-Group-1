@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private float forwardInput;
     private float previousForwardInput;
 
+    public Transform UITransform;
+
     public Transform rampTransform;
     public Transform rockTransform;
     public Transform cameraTransform; // Reference to the camera
@@ -43,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         {
             cameraTransform = Camera.main.transform; // Assign main camera if not assigned
         }
+
     }
 
     // Update is called once per frame
@@ -62,9 +65,13 @@ public class PlayerMovement : MonoBehaviour
         float baseLength = rampTransform.localScale.x;
         float rampAngle = Mathf.Atan2(height, baseLength) * Mathf.Rad2Deg;
 
+
         // Move the player in the correct direction
         Vector3 moveDirection = Quaternion.Euler(-18.5f + angleAdjustment, 0, 0) * Vector3.forward;
         transform.Translate(moveDirection * Time.deltaTime * speed * forwardInput);
+        
+        // MOVE UI
+        UITransform.Translate(moveDirection * Time.deltaTime * speed * forwardInput);
 
         // Set animation states
         animator.SetBool("isPushing", forwardInput > 0);
@@ -79,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
             rotationSpeed = 33f;
         }
 
-
+        // ROCK MOVEMENT
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
