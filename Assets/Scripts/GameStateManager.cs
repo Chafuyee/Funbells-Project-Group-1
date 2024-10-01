@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,8 @@ public class GameStateManager : MonoBehaviour
     public GameObject calibrationHints;
     public GameObject repCounterVisual;
     public GameObject holdTimerVisual;
+
+    public PlayerMovement playerController;
     
     public AudioSource audioSource;
 
@@ -24,6 +27,7 @@ public class GameStateManager : MonoBehaviour
 
     public int optionalStateTrigger = 0;
     private int maxStates = 10;
+    private float forwardInput;
 
 
     // Start is called before the first frame update
@@ -32,21 +36,107 @@ public class GameStateManager : MonoBehaviour
 
         checkRepScript = GetComponent<CheckRep>();
 
-        pauseMenu.SetActive(false);
-        gameOverMenu.SetActive(false);
-        calibrationHints.SetActive(false);
-        repCounterVisual.SetActive(false);
-        holdTimerVisual.SetActive(false);
-        startMenu.SetActive(true);
-
         isPaused = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        switch (currentState)
+        {
+            case 1:
+                activateCalibrationHints();
+                Debug.Log("HERE 1");
+                break;
+            case 2:
+                activateStartMenu();
+                Debug.Log("HERE 2");
+                playerController.setStarted();
+                GameManager.instance.SetForwardInput(1);
+                break;
+            case 3:
+                activatePauseMenu();
+                Debug.Log("HERE 3");
+                break;
+            case 4:
+                activateGameOver();
+                Debug.Log("HERE 4");
+                break;
+        }
+        if (currentState == 2)
+        {
+            GameManager.instance.SetForwardInput(1);
+        } else
+        {
+            GameManager.instance.SetForwardInput(0);
+        }
+    }
 
+    void activateCalibrationHints() 
+    {
+        pauseMenu.SetActive(false);
+        gameOverMenu.SetActive(false);
+        calibrationHints.SetActive(true);
+        repCounterVisual.SetActive(false);
+        holdTimerVisual.SetActive(false);
+        startMenu.SetActive(false);
+
+    }
+
+    void activatePauseMenu()
+    {
+        pauseMenu.SetActive(true);
+        gameOverMenu.SetActive(false);
+        calibrationHints.SetActive(false);
+        repCounterVisual.SetActive(false);
+        holdTimerVisual.SetActive(false);
+        startMenu.SetActive(false);
+
+    }
+
+    void activateStartMenu()
+    {
+        pauseMenu.SetActive(false);
+        gameOverMenu.SetActive(false);
+        calibrationHints.SetActive(false);
+        repCounterVisual.SetActive(false);
+        holdTimerVisual.SetActive(false);
+        startMenu.SetActive(true);
+    }
+
+    void activateGameOver()
+    {
+        pauseMenu.SetActive(false);
+        gameOverMenu.SetActive(true);
+        calibrationHints.SetActive(false);
+        repCounterVisual.SetActive(false);
+        holdTimerVisual.SetActive(false);
+        startMenu.SetActive(false);
+    }
+
+    void activateRepCount()
+    {
+        repCounterVisual.SetActive(true);
+        holdTimerVisual.SetActive(false);
+    }
+    
+    void activateHoldTimer()
+    {
+        holdTimerVisual.SetActive(true);
+        repCounterVisual.SetActive(false);
+    }
+
+
+    public void reverseState()
+    {
+        currentState--;
+        Debug.Log("CURRENT STATE:" + currentState.ToString());
+    }
+
+    public void nextState()
+    {
+        currentState++;
+        Debug.Log("CURRENT STATE:" + currentState.ToString());
     }
 
     void TriggerPauseMenu()

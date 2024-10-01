@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private float angleAdjustment = 0.0f;
     private float forwardInput;
     private float previousForwardInput;
+    public bool started = false;
 
     public Transform UITransform;
 
@@ -20,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
     public Transform cameraTransform; // Reference to the camera
     public Vector3 cameraOffset = new Vector3(0, 12, -10); // Desired offset of the camera from the player
     public float cameraFollowSpeed = 5.0f; // Speed at which the camera follows
+
+    public Transform startPosition;
+    public Transform endPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -51,14 +55,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // Store the previous forwardInput for swap detection
         previousForwardInput = forwardInput;
 
         // Get the current forwardInput
         forwardInput = GameManager.instance.GetForwardInput();
-        if (forwardInput == 0) {
-            rockSound.Play();
-        }
+
+        //if (forwardInput == 0) {
+        //    rockSound.Play();
+        //}
 
         // Calculate the ramp angle
         float height = rampTransform.localScale.y;
@@ -95,12 +101,20 @@ public class PlayerMovement : MonoBehaviour
         bool isSwapping = (previousForwardInput > 0 && forwardInput < 0) || (previousForwardInput < 0 && forwardInput > 0);
         animator.SetBool("isSwapping", isSwapping);
 
-        // Update the camera position to follow the player
-        cameraOffset = new Vector3(0, 8f, -10); // Desired offset of the camera from the player
-        Vector3 desiredCameraPosition = transform.position + transform.TransformDirection(cameraOffset);
-        cameraTransform.position = Vector3.Lerp(cameraTransform.position, desiredCameraPosition, cameraFollowSpeed * Time.deltaTime);
+        if (started == true) {
+            // Update the camera position to follow the player
+            cameraOffset = new Vector3(0, 8f, -10); // Desired offset of the camera from the player
+            Vector3 desiredCameraPosition = transform.position + transform.TransformDirection(cameraOffset);
+            cameraTransform.position = Vector3.Lerp(cameraTransform.position, desiredCameraPosition, cameraFollowSpeed * Time.deltaTime);
 
-        // Optionally, adjust the camera's rotation to look at the player
-        cameraTransform.LookAt(transform.position + new Vector3(0, 10, 6.5f));
+            // Optionally, adjust the camera's rotation to look at the player
+            cameraTransform.LookAt(transform.position + new Vector3(0, 10, 6.5f));
+
+        }
+    }
+
+    public void setStarted()
+    {
+        started = true;
     }
 }
