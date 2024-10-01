@@ -8,22 +8,22 @@ public class GameStateManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject startMenu;
     public GameObject gameOverMenu;
+    public GameObject calibrationHints;
+    public GameObject repCounterVisual;
+    public GameObject holdTimerVisual;
     
     public AudioSource audioSource;
-
-    public GameObject startButton;
-    public GameObject continueButton;
 
     public CheckRep checkRepScript;
 
     public bool isPaused;
     private int currentState = 0;
-    private int currentReps;
-    //private float stateDuration = 15f;
+    private int currentRepsMax = 4;
+    private float stateDuration = 15f;
     private float stateTimer = 0f;
 
     public int optionalStateTrigger = 0;
-    //private int maxStates = 10;
+    private int maxStates = 10;
 
 
     // Start is called before the first frame update
@@ -32,9 +32,11 @@ public class GameStateManager : MonoBehaviour
 
         checkRepScript = GetComponent<CheckRep>();
 
-        currentReps = checkRepScript.getReps();
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);
+        calibrationHints.SetActive(false);
+        repCounterVisual.SetActive(false);
+        holdTimerVisual.SetActive(false);
         startMenu.SetActive(true);
 
         isPaused = true;
@@ -43,8 +45,7 @@ public class GameStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        checkRepScript.addRep();
+        
 
     }
 
@@ -54,6 +55,7 @@ public class GameStateManager : MonoBehaviour
         pauseMenu.SetActive(true);
         stateTimer = 0f;
     }
+
 
     public void ResumeGame()
     {
