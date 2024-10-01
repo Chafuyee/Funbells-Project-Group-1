@@ -8,6 +8,7 @@ public class CheckRep : MonoBehaviour
     [SerializeField] public GameObject endDumbell;
     public int reps;
     public bool startReached;
+    public AudioSource repCountedSound;
 
     // Start is called before the first frame update
     void Start()
@@ -23,18 +24,19 @@ public class CheckRep : MonoBehaviour
         
         if (gameObject.activeSelf){
             if (startDumbell.activeSelf && endDumbell.activeSelf){ //Both Dumbells are active
-                //Debug.Log("Both dumbells are active");
-                // Check for collision
+                Debug.Log("Both dumbells are active");
+                //Check for collision
                 if(other.gameObject == startDumbell){
                     startReached = true;
-                    //Debug.Log("Start Reached");
+                    Debug.Log("Start Reached");
                 }
               
                 if(other.gameObject == endDumbell && startReached == true){
                     reps += 1;
                     startReached = false;
-                    //Debug.Log("End Reached");
-                    //Debug.Log(reps.ToString());
+                    repCountedSound.Play();
+                    Debug.Log("End Reached");
+                    Debug.Log(reps.ToString());
                 }
 
 
