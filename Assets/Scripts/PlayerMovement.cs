@@ -111,9 +111,10 @@ public class PlayerMovement : MonoBehaviour
             endPosition.position = Vector3.Lerp(cameraTransform.position, desiredCameraPosition, cameraFollowSpeed * Time.deltaTime);
 
             // Optionally, adjust the camera's rotation to look at the player
-            cameraTransform.LookAt(transform.position + new Vector3(0, 10, 6.5f));
-            startPosition.LookAt(transform.position + new Vector3(0, 10, 6.5f));
-            endPosition.LookAt(transform.position + new Vector3(0, 10, 6.5f));
+            // OLD VALUE 10
+            cameraTransform.LookAt(transform.position + new Vector3(0, 14, 6.5f));
+            startPosition.LookAt(transform.position + new Vector3(0, 14, 6.5f));
+            endPosition.LookAt(transform.position + new Vector3(0, 14, 6.5f));
 
         }
     }

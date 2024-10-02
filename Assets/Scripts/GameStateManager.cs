@@ -21,15 +21,16 @@ public class GameStateManager : MonoBehaviour
     public GameObject curlStartingShadow;
     public GameObject holdShadow;
 
+    public bool repDetectionOn = true;
     public PlayerMovement playerController;
     
     public AudioSource audioSource;
 
     public CheckRep checkRepScript;
 
+    public int stateReps;
     public bool isPaused;
     private int currentState = 0;
-    private int currentRepsMax = 4;
     private float stateDuration = 15f;
     private float stateTimer = 0f;
 
@@ -46,6 +47,7 @@ public class GameStateManager : MonoBehaviour
     {
         checkRepScript = GetComponent<CheckRep>();
         isPaused = true;
+        handGestureTracking.SetActive(true);
     }
 
     // Update is called once per frame
@@ -67,17 +69,21 @@ public class GameStateManager : MonoBehaviour
         {
             case 1: // Calibration step : CURLS
                 activateCalibrationHints();
+                repDetectionOn = false;
                 break;
             case 2: // Calibration step : HOLDS
-                hideCurlShadows();
                 activateHoldCalibrationHints();
+                repDetectionOn = false;
                 break;
             case 3: // Start Menu
                 hideHoldShadows();
+                //disableHandTracking();
+                repDetectionOn = false;
                 activateStartMenu(); //
                 playerController.setStarted(); // Set XR Rig on Fixed Axis
                 break;
             case 4: // Set 1s - Curl
+                repDetectionOn = true;
                 hideHoldShadows();
                 activateCurlVisual();
                 checkRepScript.activateRepCounter();
@@ -85,7 +91,7 @@ public class GameStateManager : MonoBehaviour
                 break;
             case 5: // Set 1s - Hold
                 activateHoldTimer();
-                hideCurlShadows();
+                //hideCurlShadows();
                 activateHoldVisual();
                 break;
             case 6: // PAUSE
@@ -146,8 +152,34 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
+    private void generateNextState(string incrementCode)
+    {
+        float sizeInKg = float.Parse(incrementCode.Substring(0, 4));
+        string visualRepresentation = incrementCode.Substring(4);
+        if (visualRepresentation == "s")
+        {
+            // Pull small weight relative to sizeInKG
+        } else if (visualRepresentation == "n")
+        {
+            // Pull normal weight relative to sizeInKg
+        } else
+        {
+            // Pull big weight relative to sizeInKg
+        }
+    }
+
+    public void incrementStateReps()
+    {
+        stateReps++;
+    }
+
+    public bool checkRepDetectionOn()
+    {
+        return repDetectionOn;
+    }
+
     public void incrementMoveTmr() {
-        moveTimer = moveTimer + 2f;
+        moveTimer = moveTimer + 1f;
     }
 
     void activateCurlVisual() {
@@ -269,6 +301,11 @@ public class GameStateManager : MonoBehaviour
         holdTimer.activateTimer();
         holdTimerVisual.SetActive(true);
         repCounterVisual.SetActive(false);
+    }
+
+    public void disableHandTracking()
+    {
+        handGestureTracking.SetActive(false);
     }
 
 

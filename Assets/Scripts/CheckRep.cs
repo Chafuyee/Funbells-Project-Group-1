@@ -6,16 +6,15 @@ public class CheckRep : MonoBehaviour
 {
     [SerializeField] public GameObject startDumbell;
     [SerializeField] public GameObject endDumbell;
-    public int reps;
+    public int reps=0;
     public bool startReached;
     public AudioSource repCountedSound;
     public GameStateManager StateManager;
-    private bool repCounterOn = false;
+    private bool repCounterOn = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        reps = 0;
         startReached = false;
     }
     void Update(){
@@ -23,8 +22,8 @@ public class CheckRep : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other){
-        
-        if (repCounterOn == true) {
+
+        if (StateManager.checkRepDetectionOn() == true) {
             if (gameObject.activeSelf){
                 if (startDumbell.activeSelf && endDumbell.activeSelf){ //Both Dumbells are active
                     Debug.Log("Both dumbells are active");
@@ -36,7 +35,10 @@ public class CheckRep : MonoBehaviour
                 
                     if(other.gameObject == endDumbell && startReached == true){
                         reps += 1;
+                        // UPDATE STATE MANAGER
                         StateManager.incrementMoveTmr();
+                        StateManager.incrementStateReps();
+
                         startReached = false;
                         repCountedSound.Play();
                         Debug.Log("End Reached");
