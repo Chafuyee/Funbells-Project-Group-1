@@ -10,8 +10,16 @@ public class GameStateManager : MonoBehaviour
     public GameObject startMenu;
     public GameObject gameOverMenu;
     public GameObject calibrationHints;
+    public GameObject holdCalibrationHints;
     public GameObject repCounterVisual;
     public GameObject holdTimerVisual;
+    public GameObject curlSetVisual;
+    public GameObject holdSetVisual;
+    
+    public GameObject handGestureTracking;
+    public GameObject curlEndingShadow;
+    public GameObject curlStartingShadow;
+    public GameObject holdShadow;
 
     public PlayerMovement playerController;
     
@@ -25,6 +33,9 @@ public class GameStateManager : MonoBehaviour
     private float stateDuration = 15f;
     private float stateTimer = 0f;
 
+    public HoldTimer holdTimer;
+    private float moveTimer = 0f;
+
     public int optionalStateTrigger = 0;
     private int maxStates = 10;
     private float forwardInput;
@@ -34,48 +45,173 @@ public class GameStateManager : MonoBehaviour
     void Start()
     {
         checkRepScript = GetComponent<CheckRep>();
-        audioSource.Play();
         isPaused = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (currentState)
-        {
-            case 1:
-                activateCalibrationHints();
-                Debug.Log("HERE 1");
-                break;
-            case 2:
-                activateStartMenu();
-                Debug.Log("HERE 2");
-                playerController.setStarted();
-                GameManager.instance.SetForwardInput(1);
-                break;
-            case 3:
-                activatePauseMenu();
-                Debug.Log("HERE 3");
-                break;
-            case 4:
-                activateGameOver();
-                Debug.Log("HERE 4");
-                break;
-        }
-        if (currentState == 2)
-        {
+        if (moveTimer > 0) {
             GameManager.instance.SetForwardInput(1);
-        } else
-        {
+            moveTimer -= Time.deltaTime;
+        } else if (moveTimer < 0) {
+            moveTimer = 0;
+            GameManager.instance.SetForwardInput(0);
+        } else {
             GameManager.instance.SetForwardInput(0);
         }
+
+        
+
+        switch (currentState)
+        {
+            case 1: // Calibration step : CURLS
+                activateCalibrationHints();
+                break;
+            case 2: // Calibration step : HOLDS
+                hideCurlShadows();
+                activateHoldCalibrationHints();
+                break;
+            case 3: // Start Menu
+                hideHoldShadows();
+                activateStartMenu(); //
+                playerController.setStarted(); // Set XR Rig on Fixed Axis
+                break;
+            case 4: // Set 1s - Curl
+                hideHoldShadows();
+                activateCurlVisual();
+                checkRepScript.activateRepCounter();
+                activateRepCount();
+                break;
+            case 5: // Set 1s - Hold
+                activateHoldTimer();
+                hideCurlShadows();
+                activateHoldVisual();
+                break;
+            case 6: // PAUSE
+                checkRepScript.deactivateRepCounter();
+                activatePauseMenu();
+                break;
+            case 7: // Set 1n - Curl
+                break;
+            case 8: // Set 1n - Hold
+                break;
+            case 9: // PAUSE
+                break;
+            case 10: // Set 1b - Curl
+                break;
+            case 11: // Set 1b - Hold
+                break;
+            case 12: // PAUSE
+                break;
+            case 13: // Set 2s - Curl
+                break;
+            case 14: // Set 2s - Hold
+                break;
+            case 15: // PAUSE
+                break;
+            case 16: // Set 2n - Curl
+                break;
+            case 17: // Set 2n - Hold
+                break;
+            case 18: // PAUSE
+                break;
+            case 19: // Set 2b - Curl
+                break;
+            case 20: // Set 2b - Hold
+                break;
+            case 21: // PAUSE
+                break;
+            case 22: // Set 3s - Curl
+                break;
+            case 23: // Set 3s - Hold
+                break;
+            case 24: // PAUSE
+                break;
+            case 25: // Set 3n - Curl
+                break;
+            case 26: // Set 3n - Hold
+                break;
+            case 27: // PAUSE
+                break;
+            case 28: // Set 3b - Curl
+                break;
+            case 29: // Set 3b - Hold
+                break;
+            case 30: // PAUSE
+                break;
+            case 31:
+                activateGameOver();
+                break;
+        }
+    }
+
+    public void incrementMoveTmr() {
+        moveTimer = moveTimer + 2f;
+    }
+
+    void activateCurlVisual() {
+        curlSetVisual.SetActive(true);
+        holdSetVisual.SetActive(false);
+        pauseMenu.SetActive(false);
+        gameOverMenu.SetActive(false);
+        calibrationHints.SetActive(false);
+        holdCalibrationHints.SetActive(false);
+        holdTimerVisual.SetActive(false);
+        startMenu.SetActive(false);
+    }
+
+    void activateHoldVisual() {
+        curlSetVisual.SetActive(false);
+        holdSetVisual.SetActive(true);
+        pauseMenu.SetActive(false);
+        gameOverMenu.SetActive(false);
+        calibrationHints.SetActive(false);
+        holdCalibrationHints.SetActive(false);
+        repCounterVisual.SetActive(false);
+        startMenu.SetActive(false);
+    }
+
+    void hideCurlShadows() {
+        curlSetVisual.SetActive(false);
+        holdSetVisual.SetActive(false);
+        curlStartingShadow.SetActive(false);
+        curlEndingShadow.SetActive(false);
+        holdShadow.SetActive(true);
+        holdShadow.SetActive(true);
+    }
+
+    void hideHoldShadows() {
+        curlSetVisual.SetActive(false);
+        holdSetVisual.SetActive(false);
+        holdShadow.SetActive(false);
+        holdShadow.SetActive(false);
+        curlStartingShadow.SetActive(true);
+        curlEndingShadow.SetActive(true);
     }
 
     void activateCalibrationHints() 
     {
+        curlSetVisual.SetActive(false);
+        holdSetVisual.SetActive(false);
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);
         calibrationHints.SetActive(true);
+        holdCalibrationHints.SetActive(false);
+        repCounterVisual.SetActive(false);
+        holdTimerVisual.SetActive(false);
+        startMenu.SetActive(false);
+
+    }
+
+    void activateHoldCalibrationHints() 
+    {
+        curlSetVisual.SetActive(false);
+        holdSetVisual.SetActive(false);
+        pauseMenu.SetActive(false);
+        gameOverMenu.SetActive(false);
+        calibrationHints.SetActive(false);
+        holdCalibrationHints.SetActive(true);
         repCounterVisual.SetActive(false);
         holdTimerVisual.SetActive(false);
         startMenu.SetActive(false);
@@ -84,9 +220,12 @@ public class GameStateManager : MonoBehaviour
 
     void activatePauseMenu()
     {
+        curlSetVisual.SetActive(false);
+        holdSetVisual.SetActive(false);
         pauseMenu.SetActive(true);
         gameOverMenu.SetActive(false);
         calibrationHints.SetActive(false);
+        holdCalibrationHints.SetActive(false);
         repCounterVisual.SetActive(false);
         holdTimerVisual.SetActive(false);
         startMenu.SetActive(false);
@@ -95,9 +234,12 @@ public class GameStateManager : MonoBehaviour
 
     void activateStartMenu()
     {
+        curlSetVisual.SetActive(false);
+        holdSetVisual.SetActive(false);
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);
         calibrationHints.SetActive(false);
+        holdCalibrationHints.SetActive(false);
         repCounterVisual.SetActive(false);
         holdTimerVisual.SetActive(false);
         startMenu.SetActive(true);
@@ -105,9 +247,12 @@ public class GameStateManager : MonoBehaviour
 
     void activateGameOver()
     {
+        curlSetVisual.SetActive(false);
+        holdSetVisual.SetActive(false);
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(true);
         calibrationHints.SetActive(false);
+        holdCalibrationHints.SetActive(false);
         repCounterVisual.SetActive(false);
         holdTimerVisual.SetActive(false);
         startMenu.SetActive(false);
@@ -121,6 +266,7 @@ public class GameStateManager : MonoBehaviour
     
     void activateHoldTimer()
     {
+        holdTimer.activateTimer();
         holdTimerVisual.SetActive(true);
         repCounterVisual.SetActive(false);
     }
