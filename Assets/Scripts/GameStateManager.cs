@@ -15,15 +15,14 @@ public class GameStateManager : MonoBehaviour
     public GameObject holdTimerVisual;
     public GameObject curlSetVisual;
     public GameObject holdSetVisual;
-    
+
     public GameObject handGestureTracking;
     public GameObject curlEndingShadow;
     public GameObject curlStartingShadow;
-    public GameObject holdShadow;
 
     public bool repDetectionOn = true;
     public PlayerMovement playerController;
-    
+
     public AudioSource audioSource;
 
     public CheckRep checkRepScript;
@@ -34,6 +33,8 @@ public class GameStateManager : MonoBehaviour
     private float stateDuration = 15f;
     private float stateTimer = 0f;
 
+    private bool onCurl = true;
+
     public HoldTimer holdTimer;
     private float moveTimer = 0f;
 
@@ -41,29 +42,35 @@ public class GameStateManager : MonoBehaviour
     private int maxStates = 10;
     private float forwardInput;
 
+    string[,] csvData;
 
-    // Start is called before the first frame update
+    private int csvDataIndex = 0;
+
     void Start()
     {
         checkRepScript = GetComponent<CheckRep>();
         isPaused = true;
         handGestureTracking.SetActive(true);
+        generateExperimentList();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (moveTimer > 0) {
+        if (moveTimer > 0)
+        {
             GameManager.instance.SetForwardInput(1);
             moveTimer -= Time.deltaTime;
-        } else if (moveTimer < 0) {
+        }
+        else if (moveTimer < 0)
+        {
             moveTimer = 0;
             GameManager.instance.SetForwardInput(0);
-        } else {
+        }
+        else
+        {
             GameManager.instance.SetForwardInput(0);
         }
-
-        
 
         switch (currentState)
         {
@@ -83,71 +90,28 @@ public class GameStateManager : MonoBehaviour
                 playerController.setStarted(); // Set XR Rig on Fixed Axis
                 break;
             case 4: // Set 1s - Curl
+
                 repDetectionOn = true;
                 hideHoldShadows();
                 activateCurlVisual();
                 checkRepScript.activateRepCounter();
                 activateRepCount();
-                break;
-            case 5: // Set 1s - Hold
-                activateHoldTimer();
-                //hideCurlShadows();
-                activateHoldVisual();
-                break;
-            case 6: // PAUSE
-                checkRepScript.deactivateRepCounter();
-                activatePauseMenu();
-                break;
-            case 7: // Set 1n - Curl
-                break;
-            case 8: // Set 1n - Hold
-                break;
-            case 9: // PAUSE
-                break;
-            case 10: // Set 1b - Curl
-                break;
-            case 11: // Set 1b - Hold
-                break;
-            case 12: // PAUSE
-                break;
-            case 13: // Set 2s - Curl
-                break;
-            case 14: // Set 2s - Hold
-                break;
-            case 15: // PAUSE
-                break;
-            case 16: // Set 2n - Curl
-                break;
-            case 17: // Set 2n - Hold
-                break;
-            case 18: // PAUSE
-                break;
-            case 19: // Set 2b - Curl
-                break;
-            case 20: // Set 2b - Hold
-                break;
-            case 21: // PAUSE
-                break;
-            case 22: // Set 3s - Curl
-                break;
-            case 23: // Set 3s - Hold
-                break;
-            case 24: // PAUSE
-                break;
-            case 25: // Set 3n - Curl
-                break;
-            case 26: // Set 3n - Hold
-                break;
-            case 27: // PAUSE
-                break;
-            case 28: // Set 3b - Curl
-                break;
-            case 29: // Set 3b - Hold
-                break;
-            case 30: // PAUSE
-                break;
-            case 31:
-                activateGameOver();
+                // Generate the next state using the first row of csvData
+                if (csvDataIndex < csvData.GetLength(1)) // Ensure index is within bounds
+                {
+                    string incrementCode = csvData[0, csvDataIndex];
+                    generateNextState(incrementCode);
+                    // CODE FOR CURL EXERCISE FOLLOWED BY HOLD EXERCISE
+                }
+                else
+                {
+                    // GAME OVER CONDITION
+                    Debug.Log("All entries in the first row of csvData have been processed.");
+                }
+
+                // NEED BUTTON TO MOVE TO NEXT EXERCISE e.g., csvDataIndex++
+
+
                 break;
         }
     }
@@ -158,12 +122,17 @@ public class GameStateManager : MonoBehaviour
         string visualRepresentation = incrementCode.Substring(4);
         if (visualRepresentation == "s")
         {
+            Debug.Log("Small weight, Size: " + sizeInKg);
             // Pull small weight relative to sizeInKG
-        } else if (visualRepresentation == "n")
+        }
+        else if (visualRepresentation == "n")
         {
+            Debug.Log("Normal weight, Size: " + sizeInKg);
             // Pull normal weight relative to sizeInKg
-        } else
+        }
+        else
         {
+            Debug.Log("Big weight, Size: " + sizeInKg);
             // Pull big weight relative to sizeInKg
         }
     }
@@ -178,11 +147,40 @@ public class GameStateManager : MonoBehaviour
         return repDetectionOn;
     }
 
-    public void incrementMoveTmr() {
+    public void incrementMoveTmr()
+    {
         moveTimer = moveTimer + 1f;
     }
 
-    void activateCurlVisual() {
+    public void generateExperimentList()
+    {
+        // Define the CSV data as a string array
+        csvData = new string[,]
+        {
+            { "1.75s", "1.75n", "2.75s", "2.75b", "3.75s", "1.75b", "3.75n", "3.75b", "2.75n" },
+            { "3.75n", "2.75n", "3.75s", "3.75b", "2.75s", "1.75b", "1.75s", "2.75b", "1.75n" },
+            { "2.75b", "1.75b", "1.75n", "3.75b", "1.75s", "2.75n", "2.75s", "3.75n", "3.75s" },
+            { "2.75s", "3.75s", "1.75s", "3.75n", "1.75n", "2.75n", "2.75b", "3.75b", "1.75b" },
+            { "3.75b", "2.75n", "1.75b", "3.75n", "2.75b", "3.75s", "1.75n", "2.75s", "1.75s" },
+            { "1.75n", "1.75s", "2.75b", "2.75s", "1.75b", "3.75s", "3.75b", "3.75n", "2.75n" },
+            { "3.75n", "3.75s", "2.75n", "2.75s", "3.75b", "1.75s", "1.75b", "1.75n", "2.75b" },
+            { "1.75b", "2.75b", "3.75b", "1.75n", "2.75n", "1.75s", "3.75n", "2.75s", "3.75s" },
+            { "2.75s", "1.75s", "3.75s", "1.75n", "3.75n", "2.75b", "2.75n", "1.75b", "3.75b" },
+            { "2.75n", "3.75b", "3.75n", "1.75b", "3.75s", "2.75b", "2.75s", "1.75n", "1.75s" },
+            { "1.75n", "2.75b", "1.75s", "1.75b", "2.75s", "3.75b", "3.75s", "2.75n", "3.75n" },
+            { "3.75s", "3.75n", "2.75s", "2.75n", "1.75s", "3.75b", "1.75n", "1.75b", "2.75b" },
+            { "1.75b", "3.75b", "2.75b", "2.75n", "1.75n", "3.75n", "1.75s", "3.75s", "2.75s" },
+            { "1.75s", "2.75s", "1.75n", "3.75s", "2.75b", "3.75n", "1.75b", "2.75n", "3.75b" },
+            { "2.75n", "3.75n", "3.75b", "3.75s", "1.75b", "2.75s", "2.75b", "1.75s", "1.75n" },
+            { "2.75b", "1.75n", "1.75b", "1.75s", "3.75b", "2.75s", "2.75n", "3.75s", "3.75n" },
+            { "3.75s", "2.75s", "3.75n", "1.75s", "2.75n", "1.75n", "3.75b", "2.75b", "1.75b" },
+            { "3.75b", "1.75b", "2.75n", "2.75b", "3.75n", "1.75n", "3.75s", "1.75s", "2.75s" }
+        };
+    }
+
+
+    void activateCurlVisual()
+    {
         curlSetVisual.SetActive(true);
         holdSetVisual.SetActive(false);
         pauseMenu.SetActive(false);
@@ -193,7 +191,8 @@ public class GameStateManager : MonoBehaviour
         startMenu.SetActive(false);
     }
 
-    void activateHoldVisual() {
+    void activateHoldVisual()
+    {
         curlSetVisual.SetActive(false);
         holdSetVisual.SetActive(true);
         pauseMenu.SetActive(false);
@@ -204,25 +203,27 @@ public class GameStateManager : MonoBehaviour
         startMenu.SetActive(false);
     }
 
-    void hideCurlShadows() {
+    void hideCurlShadows()
+    {
         curlSetVisual.SetActive(false);
         holdSetVisual.SetActive(false);
         curlStartingShadow.SetActive(false);
         curlEndingShadow.SetActive(false);
-        holdShadow.SetActive(true);
-        holdShadow.SetActive(true);
+        //holdShadow.SetActive(true);
+        //holdShadow.SetActive(true);
     }
 
-    void hideHoldShadows() {
+    void hideHoldShadows()
+    {
         curlSetVisual.SetActive(false);
         holdSetVisual.SetActive(false);
-        holdShadow.SetActive(false);
-        holdShadow.SetActive(false);
+        //holdShadow.SetActive(false);
+        //holdShadow.SetActive(false);
         curlStartingShadow.SetActive(true);
         curlEndingShadow.SetActive(true);
     }
 
-    void activateCalibrationHints() 
+    void activateCalibrationHints()
     {
         curlSetVisual.SetActive(false);
         holdSetVisual.SetActive(false);
@@ -236,7 +237,7 @@ public class GameStateManager : MonoBehaviour
 
     }
 
-    void activateHoldCalibrationHints() 
+    void activateHoldCalibrationHints()
     {
         curlSetVisual.SetActive(false);
         holdSetVisual.SetActive(false);
@@ -295,7 +296,7 @@ public class GameStateManager : MonoBehaviour
         repCounterVisual.SetActive(true);
         holdTimerVisual.SetActive(false);
     }
-    
+
     void activateHoldTimer()
     {
         holdTimer.activateTimer();
