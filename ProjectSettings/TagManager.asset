@@ -11,6 +11,7 @@ TagManager:
   - LeftHand
   - EndingPositionGhost
   - Ramp1
+  - HoldingPositionGhost
   layers:
   - Default
   - TransparentFX
