@@ -129,7 +129,7 @@ public class GameStateManager : MonoBehaviour
                 if (csvDataIndex < csvData.GetLength(1)) // Ensure index is within bounds
                 {
                     string incrementCode = csvData[0, csvDataIndex];
-                    generateNextState(incrementCode);
+                    generateNextState(incrementCode, exerciseState);
                     // CODE FOR CURL EXERCISE FOLLOWED BY HOLD EXERCISE
                     if (exerciseState == 0)
                     {
@@ -171,8 +171,10 @@ public class GameStateManager : MonoBehaviour
             exerciseState = 0;
         }
     }
-    private void changeWeightVisual(string weightName)
+    private void changeWeightVisual(string weightName, int exerciseType)
     {
+        string processedName;
+
         if (lastActive == null)
         {
             lastActive = originalDumbell;
@@ -181,18 +183,40 @@ public class GameStateManager : MonoBehaviour
             lastActive = currentActive;
         }
 
-        GameObject nextWeight = GameObject.Find(weightName);
+        // CONVERT WEIGHT TYPE
+        if (weightName.Substring(0,4) == "1.75") {
+            if (exerciseType == 0) {
+                processedName = "1.25" + weightName.Substring(4, 5);
+            } else {
+                processedName = "bar_" + weightName.Substring(4);
+            }
+        } else if (weightName.Substring(0, 4) == "2.75") {
+            if (exerciseType == 0) {
+                processedName = "2.5" + weightName.Substring(4, 5);
+            } else {
+                processedName = "1.25" + weightName.Substring(4);
+            }
+        } else if (weightName.Substring(0, 4) == "3.75") {
+            if (exerciseType == 0) {
+                processedName = weightName
+            } else {
+                processedName = "2.5" + weightName.Substring(4);
+            }
+            
+        }
+
+        GameObject nextWeight = GameObject.Find(processedName);
         currentActive = nextWeight;
         currentActive.SetActive(true);
         lastActive.SetActive(false);
 
     }
 
-    private void generateNextState(string incrementCode)
+    private void generateNextState(string incrementCode, int exerciseType)
     {
         float sizeInKg = float.Parse(incrementCode.Substring(0, 4));
         string visualRepresentation = incrementCode.Substring(4);
-        changeWeightVisual(incrementCode);
+        changeWeightVisual(incrementCode, exerciseType);
         if (visualRepresentation == "s")
         {
 
