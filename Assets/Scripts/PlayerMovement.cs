@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform startPosition;
     public Transform endPosition;
+    public Transform holdPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -109,12 +110,15 @@ public class PlayerMovement : MonoBehaviour
 
             startPosition.position = Vector3.Lerp(cameraTransform.position, desiredCameraPosition, cameraFollowSpeed * Time.deltaTime);
             endPosition.position = Vector3.Lerp(cameraTransform.position, desiredCameraPosition, cameraFollowSpeed * Time.deltaTime);
+            holdPosition.position = Vector3.Lerp(cameraTransform.position, desiredCameraPosition, cameraFollowSpeed * Time.deltaTime);
 
             // Optionally, adjust the camera's rotation to look at the player
             // OLD VALUE 10
-            cameraTransform.LookAt(transform.position + new Vector3(0, 14, 6.5f));
-            startPosition.LookAt(transform.position + new Vector3(0, 14, 6.5f));
-            endPosition.LookAt(transform.position + new Vector3(0, 14, 6.5f));
+            cameraTransform.LookAt(transform.position + new Vector3(0, 10, 6.5f));
+            startPosition.LookAt(transform.position + new Vector3(0, 10, 6.5f));
+            endPosition.LookAt(transform.position + new Vector3(0, 10, 6.5f));
+            holdPosition.LookAt(transform.position + new Vector3(0, 10, 6.5f));
+
 
         }
     }

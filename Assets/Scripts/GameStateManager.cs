@@ -16,11 +16,19 @@ public class GameStateManager : MonoBehaviour
     public GameObject curlSetVisual;
     public GameObject holdSetVisual;
 
+    private int exerciseState = 0;
+
+    public GameObject currentActive;
+    public GameObject lastActive;
+    public GameObject originalDumbell;
+
     public GameObject handGestureTracking;
     public GameObject curlEndingShadow;
     public GameObject curlStartingShadow;
+    public GameObject holdHeightShadow;
 
     public bool repDetectionOn = true;
+    public bool holdDetectionOn = false;
     public PlayerMovement playerController;
 
     public AudioSource audioSource;
@@ -37,6 +45,7 @@ public class GameStateManager : MonoBehaviour
 
     public HoldTimer holdTimer;
     private float moveTimer = 0f;
+    private float fallTimer = 0f;
 
     public int optionalStateTrigger = 0;
     private int maxStates = 10;
@@ -57,12 +66,28 @@ public class GameStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Move Player Forward
         if (moveTimer > 0)
         {
             GameManager.instance.SetForwardInput(1);
             moveTimer -= Time.deltaTime;
         }
         else if (moveTimer < 0)
+        {
+            moveTimer = 0;
+            GameManager.instance.SetForwardInput(0);
+        }
+        else
+        {
+            GameManager.instance.SetForwardInput(0);
+        }
+
+        // Move Player back
+        if (fallTimer > 0)
+        {
+            GameManager.instance.SetForwardInput(-1);
+            fallTimer -= Time.deltaTime;
+        } else if (moveTimer < 0)
         {
             moveTimer = 0;
             GameManager.instance.SetForwardInput(0);
@@ -80,28 +105,48 @@ public class GameStateManager : MonoBehaviour
                 break;
             case 2: // Calibration step : HOLDS
                 activateHoldCalibrationHints();
+                //hideCurlShadows();
                 repDetectionOn = false;
                 break;
-            case 3: // Start Menu
+
+            case 3: // TEST CASE
+                holdDetectionOn = true;
+                activateHoldTimer();
+                activateHoldVisual();
+                playerController.setStarted();
+                break;
+
+            case 4: // Start Menu
                 hideHoldShadows();
                 //disableHandTracking();
                 repDetectionOn = false;
                 activateStartMenu(); //
                 playerController.setStarted(); // Set XR Rig on Fixed Axis
                 break;
-            case 4: // Set 1s - Curl
+            case 5: // Set 1s - Curl
 
-                repDetectionOn = true;
-                hideHoldShadows();
-                activateCurlVisual();
-                checkRepScript.activateRepCounter();
-                activateRepCount();
                 // Generate the next state using the first row of csvData
                 if (csvDataIndex < csvData.GetLength(1)) // Ensure index is within bounds
                 {
                     string incrementCode = csvData[0, csvDataIndex];
                     generateNextState(incrementCode);
                     // CODE FOR CURL EXERCISE FOLLOWED BY HOLD EXERCISE
+                    if (exerciseState == 0)
+                    {
+                        activateCurlVisual();
+                        //checkRepScript.activateRepCounter();
+                        activateRepCount();
+                        hideHoldShadows();
+                        repDetectionOn = true;
+                    }
+                    else if (exerciseState == 1)
+                    {
+                        repDetectionOn = false;
+                        holdDetectionOn = true;
+                        activateHoldVisual();
+                        activateHoldTimer();
+
+                    }
                 }
                 else
                 {
@@ -116,14 +161,42 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
+    public void progressExercise()
+    {
+        if (exerciseState != 2)
+        {
+            exerciseState++;
+        } else
+        {
+            exerciseState = 0;
+        }
+    }
+    private void changeWeightVisual(string weightName)
+    {
+        if (lastActive == null)
+        {
+            lastActive = originalDumbell;
+        } else
+        {
+            lastActive = currentActive;
+        }
+
+        GameObject nextWeight = GameObject.Find(weightName);
+        currentActive = nextWeight;
+        currentActive.SetActive(true);
+        lastActive.SetActive(false);
+
+    }
+
     private void generateNextState(string incrementCode)
     {
         float sizeInKg = float.Parse(incrementCode.Substring(0, 4));
         string visualRepresentation = incrementCode.Substring(4);
+        changeWeightVisual(incrementCode);
         if (visualRepresentation == "s")
         {
+
             Debug.Log("Small weight, Size: " + sizeInKg);
-            // Pull small weight relative to sizeInKG
         }
         else if (visualRepresentation == "n")
         {
@@ -147,9 +220,20 @@ public class GameStateManager : MonoBehaviour
         return repDetectionOn;
     }
 
+    public bool checkHoldDetectionOn()
+    {
+        return holdDetectionOn;
+    }
+
     public void incrementMoveTmr()
     {
         moveTimer = moveTimer + 1f;
+    }
+
+    public void incrementFallTmr()
+    {
+        fallTimer = fallTimer + 0.1f;
+        Debug.Log(fallTimer.ToString());
     }
 
     public void generateExperimentList()
@@ -209,16 +293,16 @@ public class GameStateManager : MonoBehaviour
         holdSetVisual.SetActive(false);
         curlStartingShadow.SetActive(false);
         curlEndingShadow.SetActive(false);
-        //holdShadow.SetActive(true);
-        //holdShadow.SetActive(true);
+        holdHeightShadow.SetActive(true);
+        holdHeightShadow.SetActive(true);
     }
 
     void hideHoldShadows()
     {
         curlSetVisual.SetActive(false);
         holdSetVisual.SetActive(false);
-        //holdShadow.SetActive(false);
-        //holdShadow.SetActive(false);
+        holdHeightShadow.SetActive(false);
+        holdHeightShadow.SetActive(false);
         curlStartingShadow.SetActive(true);
         curlEndingShadow.SetActive(true);
     }
