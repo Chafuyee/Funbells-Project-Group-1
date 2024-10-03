@@ -173,7 +173,7 @@ public class GameStateManager : MonoBehaviour
     }
     private void changeWeightVisual(string weightName, int exerciseType)
     {
-        string processedName;
+        string processedName = "";
 
         if (lastActive == null)
         {
@@ -198,7 +198,7 @@ public class GameStateManager : MonoBehaviour
             }
         } else if (weightName.Substring(0, 4) == "3.75") {
             if (exerciseType == 0) {
-                processedName = weightName
+                processedName = weightName;
             } else {
                 processedName = "2.5" + weightName.Substring(4);
             }
