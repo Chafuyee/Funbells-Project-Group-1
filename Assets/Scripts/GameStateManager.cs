@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,8 @@ public class GameStateManager : MonoBehaviour
     public GameObject curlSetVisual;
     public GameObject holdSetVisual;
 
+    public GameObject wristButtonUI;
+
     private int exerciseState = 0;
 
     public GameObject currentActive;
@@ -27,7 +30,7 @@ public class GameStateManager : MonoBehaviour
     public GameObject curlStartingShadow;
     public GameObject holdHeightShadow;
 
-    public bool repDetectionOn = true;
+    public bool repDetectionOn = false;
     public bool holdDetectionOn = false;
     public PlayerMovement playerController;
 
@@ -41,8 +44,6 @@ public class GameStateManager : MonoBehaviour
     private float stateDuration = 15f;
     private float stateTimer = 0f;
 
-    private bool onCurl = true;
-
     public HoldTimer holdTimer;
     private float moveTimer = 0f;
     private float fallTimer = 0f;
@@ -50,6 +51,12 @@ public class GameStateManager : MonoBehaviour
     public int optionalStateTrigger = 0;
     private int maxStates = 10;
     private float forwardInput;
+
+    private int currentCurlSet = 1;
+    private int currentHoldSet = 1;
+
+    public TextMeshPro worldCurlVisual;
+    public TextMeshPro worldHoldVisual;
 
     string[,] csvData;
 
@@ -66,6 +73,9 @@ public class GameStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        worldCurlVisual.text = "You're on Curl Set: " + currentCurlSet.ToString();
+        worldHoldVisual.text = "You're on Hold Set: " + currentHoldSet.ToString();
+
         // Move Player Forward
         if (moveTimer > 0)
         {
@@ -107,37 +117,32 @@ public class GameStateManager : MonoBehaviour
                 activateHoldCalibrationHints();
                 //hideCurlShadows();
                 repDetectionOn = false;
+                holdDetectionOn = false;
                 break;
-
-            case 3: // TEST CASE
-                holdDetectionOn = true;
-                activateHoldTimer();
-                activateHoldVisual();
-                playerController.setStarted();
-                break;
-
-            case 4: // Start Menu
-                hideHoldShadows();
-                //disableHandTracking();
+            case 3: // Start Menu
+                hideAllShadows();
                 repDetectionOn = false;
+                holdDetectionOn = false;
                 activateStartMenu(); //
                 playerController.setStarted(); // Set XR Rig on Fixed Axis
                 break;
-            case 5: // Set 1s - Curl
+            case 4: // Set 1s - Curl
 
                 // Generate the next state using the first row of csvData
                 if (csvDataIndex < csvData.GetLength(1)) // Ensure index is within bounds
                 {
                     string incrementCode = csvData[0, csvDataIndex];
+                    Debug.Log(incrementCode);
                     generateNextState(incrementCode, exerciseState);
                     // CODE FOR CURL EXERCISE FOLLOWED BY HOLD EXERCISE
                     if (exerciseState == 0)
                     {
-                        activateCurlVisual();
-                        //checkRepScript.activateRepCounter();
-                        activateRepCount();
-                        hideHoldShadows();
-                        repDetectionOn = true;
+                        activateCurlVisual(); // Show Curl Visual
+                        activateRepCount(); // Enable Rep Counting Mechanism
+                        hideHoldShadows(); // Hide Hold Guidance Shadow
+                        repDetectionOn = true; // Activate Rep Detection
+                        holdDetectionOn = false; // Deactivate Hold Detection
+
                     }
                     else if (exerciseState == 1)
                     {
@@ -146,6 +151,11 @@ public class GameStateManager : MonoBehaviour
                         activateHoldVisual();
                         activateHoldTimer();
 
+                    } else
+                    {
+                        activatePauseMenu();
+                        repDetectionOn = false;
+                        holdDetectionOn = false;
                     }
                 }
                 else
@@ -163,53 +173,92 @@ public class GameStateManager : MonoBehaviour
 
     public void progressExercise()
     {
-        if (exerciseState != 2)
+        stateReps = 0; // Reset the set reps
+        if (exerciseState == 0)
+        {
+            currentCurlSet++;
+            exerciseState++;
+            holdTimer.deactivateTimer();
+            holdTimer.activateTimer();
+
+        }
+        else if (exerciseState == 1)
         {
             exerciseState++;
-        } else
-        {
-            exerciseState = 0;
+            currentHoldSet++;
         }
+        else if (exerciseState == 2) {
+            exerciseState = 0;
+            csvDataIndex++;
+
+        }
+       
     }
     private void changeWeightVisual(string weightName, int exerciseType)
     {
         string processedName = "";
 
-        if (lastActive == null)
-        {
-            lastActive = originalDumbell;
-        } else
+        if (currentActive.name != "Dumbell")
         {
             lastActive = currentActive;
         }
 
-        // CONVERT WEIGHT TYPE
-        if (weightName.Substring(0,4) == "1.75") {
-            if (exerciseType == 0) {
-                processedName = "1.25" + weightName.Substring(4, 5);
-            } else {
-                processedName = "bar_" + weightName.Substring(4);
-            }
-        } else if (weightName.Substring(0, 4) == "2.75") {
-            if (exerciseType == 0) {
-                processedName = "2.5" + weightName.Substring(4, 5);
-            } else {
+        // Convert weight type
+        if (weightName.Substring(0, 4) == "1.75")
+        {
+            if (exerciseType == 0)
+            {
                 processedName = "1.25" + weightName.Substring(4);
             }
-        } else if (weightName.Substring(0, 4) == "3.75") {
-            if (exerciseType == 0) {
-                processedName = weightName;
-            } else {
+            else
+            {
+                processedName = "bar_" + weightName.Substring(4);
+            }
+        }
+        else if (weightName.Substring(0, 4) == "2.75")
+        {
+            if (exerciseType == 0)
+            {
                 processedName = "2.5" + weightName.Substring(4);
             }
-            
+            else
+            {
+                processedName = "1.25" + weightName.Substring(4);
+            }
+        }
+        else if (weightName.Substring(0, 4) == "3.75")
+        {
+            if (exerciseType == 0)
+            {
+                processedName = weightName;
+            }
+            else
+            {
+                processedName = "2.5" + weightName.Substring(4);
+            }
         }
 
-        GameObject nextWeight = GameObject.Find(processedName);
-        currentActive = nextWeight;
-        currentActive.SetActive(true);
-        lastActive.SetActive(false);
+        // Find the next weight GameObject
+        Transform nextWeightTransform = wristButtonUI.transform.Find(processedName);
+        GameObject nextWeight = nextWeightTransform.gameObject;
 
+        // Check if the GameObject exists before activating it
+        if (nextWeight != null)
+        {
+            currentActive = nextWeight;
+            currentActive.SetActive(true);
+            Debug.Log("HERE IS CURRENT:" + currentActive.name);
+
+            if (lastActive != null)
+            {
+                originalDumbell.SetActive(false);
+                currentActive.SetActive(true);
+            }
+        }
+        else
+        {
+            Debug.LogError("GameObject with name " + processedName + " not found!");
+        }
     }
 
     private void generateNextState(string incrementCode, int exerciseType)
@@ -220,16 +269,16 @@ public class GameStateManager : MonoBehaviour
         if (visualRepresentation == "s")
         {
 
-            Debug.Log("Small weight, Size: " + sizeInKg);
+            //Debug.Log("Small weight, Size: " + sizeInKg);
         }
         else if (visualRepresentation == "n")
         {
-            Debug.Log("Normal weight, Size: " + sizeInKg);
+            //Debug.Log("Normal weight, Size: " + sizeInKg);
             // Pull normal weight relative to sizeInKg
         }
         else
         {
-            Debug.Log("Big weight, Size: " + sizeInKg);
+            //Debug.Log("Big weight, Size: " + sizeInKg);
             // Pull big weight relative to sizeInKg
         }
     }
@@ -314,16 +363,22 @@ public class GameStateManager : MonoBehaviour
     void hideCurlShadows()
     {
         curlSetVisual.SetActive(false);
-        holdSetVisual.SetActive(false);
         curlStartingShadow.SetActive(false);
         curlEndingShadow.SetActive(false);
         holdHeightShadow.SetActive(true);
         holdHeightShadow.SetActive(true);
     }
 
+    void hideAllShadows()
+    {
+        curlStartingShadow.SetActive(false);
+        curlEndingShadow.SetActive(false);
+        holdHeightShadow.SetActive(false);
+        holdHeightShadow.SetActive(false);
+    }
+
     void hideHoldShadows()
     {
-        curlSetVisual.SetActive(false);
         holdSetVisual.SetActive(false);
         holdHeightShadow.SetActive(false);
         holdHeightShadow.SetActive(false);

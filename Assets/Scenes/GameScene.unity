@@ -2027,8 +2027,9 @@ MonoBehaviour:
   holdTimerVisual: {fileID: 123116522}
   curlSetVisual: {fileID: 734807630}
   holdSetVisual: {fileID: 1359885615}
-  currentActive: {fileID: 0}
-  lastActive: {fileID: 0}
+  wristButtonUI: {fileID: 750208647}
+  currentActive: {fileID: 899796689}
+  lastActive: {fileID: 899796689}
   originalDumbell: {fileID: 899796689}
   handGestureTracking: {fileID: 1990532780}
   curlEndingShadow: {fileID: 3218928}
@@ -2043,6 +2044,8 @@ MonoBehaviour:
   isPaused: 0
   holdTimer: {fileID: 748765369}
   optionalStateTrigger: 0
+  worldCurlVisual: {fileID: 2020624643}
+  worldHoldVisual: {fileID: 815081596}
 --- !u!1 &391548949
 GameObject:
   m_ObjectHideFlags: 0
@@ -3876,6 +3879,12 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &750208647 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5030734266366949667, guid: e2698219e3231e94c8765d49b9dd5cff,
+    type: 3}
+  m_PrefabInstance: {fileID: 656613793}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &750916601
 GameObject:
   m_ObjectHideFlags: 0
@@ -20598,7 +20607,7 @@ MonoBehaviour:
   cameraFollowSpeed: 5
   startPosition: {fileID: 965476334}
   endPosition: {fileID: 3218929}
-  holdPosition: {fileID: 1797108186}
+  holdPosition: {fileID: 1584800750}
 --- !u!82 &5343613304109118911
 AudioSource:
   m_ObjectHideFlags: 0
