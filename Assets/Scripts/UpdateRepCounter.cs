@@ -7,18 +7,18 @@ public class UpdateRepCounter : MonoBehaviour
 {
     public TextMeshPro worldRepCountText;
     public CheckRep checkRepScript;
-    private int repCount;
+    public GameStateManager stateManager;
 
     // Start is called before the first frame update
     void Start()
     {
         checkRepScript = GetComponent<CheckRep>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        worldRepCountText.text = repCount.ToString();
-        repCount = checkRepScript.getReps();
+        worldRepCountText.text = stateManager.stateReps.ToString();
     }
 }

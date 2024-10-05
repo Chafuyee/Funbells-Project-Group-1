@@ -1,17 +1,18 @@
-
 using UnityEngine;
 using UnityEngine.XR.Hands;
 using UnityEngine.XR.Management;
 
 
 
-public class SetStartingDumbell : MonoBehaviour
+public class SetDumbell : MonoBehaviour
 {
     private XRHandSubsystem handSubsystem;
     private Vector3 leftHandPosition;
     private Quaternion leftHandRotation;
     private Vector3 rightHandPosition;
     private Quaternion rightHandRotation;
+
+    [SerializeField] public GameObject dumbbell;
 
     void Start()
     {
@@ -54,7 +55,7 @@ public class SetStartingDumbell : MonoBehaviour
         XRHand leftHand = handSubsystem.leftHand;
         XRHand rightHand = handSubsystem.rightHand;
 
-        GameObject.FindGameObjectWithTag("StartingPositionGhost").SetActive(true);
+        GameObject.FindGameObjectWithTag(dumbbell.tag).SetActive(true);
         
         if (leftHand.isTracked)
             {
@@ -70,3 +71,5 @@ public class SetStartingDumbell : MonoBehaviour
        
     }
 }
+
+        

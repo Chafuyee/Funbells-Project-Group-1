@@ -3,18 +3,19 @@ using UnityEngine.EventSystems; // Required for OnPointerDown and OnPointerUp ev
 
 public class BackwardButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-
+    public GameStateManager StateManager;
     // Called when the button is pressed
     public void OnPointerDown(PointerEventData eventData)
     {
-        GameManager.instance.SetForwardInput(-1);
-        Debug.Log("Backward button is held down.");
+        //GameManager.instance.SetForwardInput(-1);
+        StateManager.reverseState();
+        //Debug.Log("Backward button is held down.");
     }
 
     // Called when the button is released
     public void OnPointerUp(PointerEventData eventData)
     {
-        GameManager.instance.SetForwardInput(0);
-        Debug.Log("Backward button is released.");
+        //GameManager.instance.SetForwardInput(0);
+        //Debug.Log("Backward button is released.");
     }
 }

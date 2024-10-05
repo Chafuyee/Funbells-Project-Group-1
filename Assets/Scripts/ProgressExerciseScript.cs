@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems; // Required for OnPointerDown and OnPointerUp events
 
-public class ForwardButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class ProgressExerciseScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public GameStateManager stateManager;
 
@@ -10,7 +10,7 @@ public class ForwardButtonScript : MonoBehaviour, IPointerDownHandler, IPointerU
     {
         // IMPORTANT CODE FOR MOVEMENT
         //GameManager.instance.SetForwardInput(1);
-        stateManager.nextState();
+        stateManager.progressExercise();
         //Debug.Log("Forward button is held down.");
     }
 
