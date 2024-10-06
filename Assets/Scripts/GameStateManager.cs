@@ -221,7 +221,7 @@ public class GameStateManager : MonoBehaviour
         {
             if (exerciseType == 0)
             {
-                processedName = "2.5" + weightName.Substring(4);
+                processedName = "3.75" + weightName.Substring(4);
             }
             else
             {
@@ -232,11 +232,11 @@ public class GameStateManager : MonoBehaviour
         {
             if (exerciseType == 0)
             {
-                processedName = weightName;
+                processedName = "5.25" + weightName.Substring(4);
             }
             else
             {
-                processedName = "2.5" + weightName.Substring(4);
+                processedName = "3.75" + weightName.Substring(4);
             }
         }
 
