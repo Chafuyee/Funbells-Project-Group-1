@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class GameStateManager : MonoBehaviour
@@ -106,7 +107,8 @@ public class GameStateManager : MonoBehaviour
                 GameManager.instance.SetForwardInput(0);
             }
         }
-        
+
+
 
         switch (currentState)
         {
@@ -128,36 +130,45 @@ public class GameStateManager : MonoBehaviour
                 playerController.setStarted(); // Set XR Rig on Fixed Axis
                 break;
             case 4: // Set 1s - Curl
-
+                handGestureTracking.SetActive(false); // DISABLE CALIBRATION
                 // Generate the next state using the first row of csvData
                 if (csvDataIndex < csvData.GetLength(1)) // Ensure index is within bounds
                 {
-                    string incrementCode = csvData[0, csvDataIndex];
-                    Debug.Log(incrementCode);
+                    string incrementCode = csvData[1, csvDataIndex];
+                    //Debug.Log(incrementCode);
                     generateNextState(incrementCode, exerciseState);
+                    setExerciseOn(exerciseState);
                     // CODE FOR CURL EXERCISE FOLLOWED BY HOLD EXERCISE
                     if (exerciseState == 0)
                     {
                         activateCurlVisual(); // Show Curl Visual
                         activateRepCount(); // Enable Rep Counting Mechanism
                         hideHoldShadows(); // Hide Hold Guidance Shadow
-                        repDetectionOn = true; // Activate Rep Detection
-                        holdDetectionOn = false; // Deactivate Hold Detection
+                        //repDetectionOn = true; // Activate Rep Detection
+                        //holdDetectionOn = false; // Deactivate Hold Detection
 
                     }
                     else if (exerciseState == 1)
                     {
-                        repDetectionOn = false;
-                        holdDetectionOn = true;
-                        activateHoldVisual();
-                        hideCurlShadows();
-                        activateHoldTimer();
-
-                    } else if (exerciseState == 2)
-                    {
                         activatePauseMenu();
-                        repDetectionOn = false;
-                        holdDetectionOn = false;
+                        hideAllShadows();
+                        //repDetectionOn = false;
+                        //holdDetectionOn = false;
+
+                    }
+                    else if (exerciseState == 2)
+                    {
+                        generateNextState(incrementCode, exerciseState);
+                        hideCurlShadows();
+                        //repDetectionOn = false;
+                        //holdDetectionOn = true;
+                        activateHoldVisual();
+                        activateHoldTimer();
+                    }
+                    else if (exerciseState == 3) {
+                        activatePauseMenu();
+                        //repDetectionOn = false;
+                        //holdDetectionOn = false;
                     }
                 }
                 else
@@ -173,6 +184,36 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
+    public void resetMovement()
+    {
+        moveTimer = 0f;
+        fallTimer = 0f;
+    }
+
+    private void setExerciseOn(int exerciseState)
+    {
+        if (exerciseState == 0)
+        {
+            repDetectionOn = true;
+            holdDetectionOn = false;
+        }
+        else if (exerciseState == 1)
+        {
+            repDetectionOn = false;
+            holdDetectionOn = false;
+        }
+        else if (exerciseState == 2)
+        {
+            repDetectionOn = false;
+            holdDetectionOn = true;
+        }
+        else if (exerciseState == 3)
+        {
+            repDetectionOn = false;
+            holdDetectionOn = false;
+        }
+    }
+
     public void progressExercise()
     {
         stateReps = 0; // Reset the set reps
@@ -180,16 +221,19 @@ public class GameStateManager : MonoBehaviour
         {
             currentCurlSet++;
             exerciseState++;
-            holdTimer.deactivateTimer();
-            holdTimer.activateTimer();
 
         }
         else if (exerciseState == 1)
         {
             exerciseState++;
+            holdTimer.deactivateTimer();
+            holdTimer.activateTimer();
+        } else if (exerciseState == 2)
+        {
+            exerciseState++;
             currentHoldSet++;
         }
-        else if (exerciseState == 2) {
+        else if (exerciseState == 3) {
             exerciseState = 0;
             csvDataIndex++;
 
