@@ -127,7 +127,14 @@ public class GameStateManager : MonoBehaviour
                 activateStartMenu(); //
                 playerController.setStarted(); // Set XR Rig on Fixed Axis
                 break;
-            case 4: // Set 1s - Curl
+            case 4: // TEST HOLD OUTSIDE OF LOOP
+                hideCurlShadows();
+                repDetectionOn = false;
+                holdDetectionOn = true;
+                activateHoldVisual();
+                activateHoldTimer();
+                break;
+            case 5: // Set 1s - Curl
                 handGestureTracking.SetActive(false);
                 // Generate the next state using the first row of csvData
                 if (csvDataIndex < csvData.GetLength(1)) // Ensure index is within bounds
@@ -147,12 +154,12 @@ public class GameStateManager : MonoBehaviour
                     }
                     else if (exerciseState == 1)
                     {
-                        generateNextState(incrementCode, exerciseState);
-                        hideCurlShadows();
-                        holdDetectionOn = true;
-                        repDetectionOn = false;
-                        activateHoldTimer();
-                        activateHoldVisual();
+                        generateNextState(incrementCode, exerciseState); // Change the weight to hold visual
+                        hideCurlShadows(); // Hide the curl calibration shadows
+                        holdDetectionOn = true; // activate hold detection for exercise
+                        repDetectionOn = false; // deactivate rep detection
+                        activateHoldTimer(); // enable visuals
+                        activateHoldVisual(); // enable visuals
 
                     } else if (exerciseState == 2)
                     {
