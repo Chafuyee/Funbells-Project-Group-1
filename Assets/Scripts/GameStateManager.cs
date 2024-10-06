@@ -77,35 +77,36 @@ public class GameStateManager : MonoBehaviour
         worldHoldVisual.text = "You're on Hold Set: " + currentHoldSet.ToString();
 
         // Move Player Forward
-        if (moveTimer > 0)
+        if (repDetectionOn == true)
         {
-            GameManager.instance.SetForwardInput(1);
-            moveTimer -= Time.deltaTime;
-        }
-        else if (moveTimer < 0)
-        {
-            moveTimer = 0;
-            GameManager.instance.SetForwardInput(0);
-        }
-        else
-        {
-            GameManager.instance.SetForwardInput(0);
+            if (moveTimer > 0)
+            {
+                GameManager.instance.SetForwardInput(1);
+                moveTimer -= Time.deltaTime;
+            }
+            else if (moveTimer <= 0)
+            {
+                moveTimer = 0;
+                GameManager.instance.SetForwardInput(0);
+            }
         }
 
         // Move Player back
-        if (fallTimer > 0)
+   
+        if (holdDetectionOn == true)
         {
-            GameManager.instance.SetForwardInput(-1);
-            fallTimer -= Time.deltaTime;
-        } else if (moveTimer < 0)
-        {
-            moveTimer = 0;
-            GameManager.instance.SetForwardInput(0);
+            if (fallTimer > 0)
+            {
+                GameManager.instance.SetForwardInput(-1);
+                fallTimer -= Time.deltaTime;
+            }
+            else if (fallTimer <= 0)
+            {
+                fallTimer = 0;
+                GameManager.instance.SetForwardInput(0);
+            }
         }
-        else
-        {
-            GameManager.instance.SetForwardInput(0);
-        }
+        
 
         switch (currentState)
         {
@@ -149,9 +150,10 @@ public class GameStateManager : MonoBehaviour
                         repDetectionOn = false;
                         holdDetectionOn = true;
                         activateHoldVisual();
+                        hideCurlShadows();
                         activateHoldTimer();
 
-                    } else
+                    } else if (exerciseState == 2)
                     {
                         activatePauseMenu();
                         repDetectionOn = false;
@@ -247,17 +249,18 @@ public class GameStateManager : MonoBehaviour
         {
             currentActive = nextWeight;
             currentActive.SetActive(true);
-            Debug.Log("HERE IS CURRENT:" + currentActive.name);
+            //Debug.Log("HERE IS CURRENT:" + currentActive.name);
 
             if (lastActive != null)
             {
                 originalDumbell.SetActive(false);
+                lastActive.SetActive(false);
                 currentActive.SetActive(true);
             }
         }
         else
         {
-            Debug.LogError("GameObject with name " + processedName + " not found!");
+            //Debug.LogError("GameObject with name " + processedName + " not found!");
         }
     }
 
@@ -285,6 +288,7 @@ public class GameStateManager : MonoBehaviour
 
     public void incrementStateReps()
     {
+        Debug.Log("STATE REP ADDED");
         stateReps++;
     }
 
@@ -300,13 +304,29 @@ public class GameStateManager : MonoBehaviour
 
     public void incrementMoveTmr()
     {
-        moveTimer = moveTimer + 1f;
+        //Debug.Log("MOVE TIMER HERE");
+        moveTimer = moveTimer + 0.25f;
+    }
+
+    public void moveForward()
+    {
+        GameManager.instance.SetForwardInput(1);
+    }
+
+    public void stopMovement()
+    {
+        GameManager.instance.SetForwardInput(0);
+    }
+
+    public void moveBackwards()
+    {
+        GameManager.instance.SetForwardInput(-1);
     }
 
     public void incrementFallTmr()
     {
-        fallTimer = fallTimer + 0.1f;
-        Debug.Log(fallTimer.ToString());
+        fallTimer = fallTimer + 0.025f;
+        //Debug.Log(fallTimer.ToString());
     }
 
     public void generateExperimentList()

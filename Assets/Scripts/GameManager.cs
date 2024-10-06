@@ -64,13 +64,13 @@ public class GameManager : MonoBehaviour
 
     public float GetForwardInput()
     {
-        // Debug.Log("Getting forward input: " + GetValue<int>("ForwardInput", 0));
+        //Debug.Log("Getting forward input: " + GetValue<int>("ForwardInput", 0));
         return GetValue<float>("ForwardInput", 0);
     }   
 
     public void SetForwardInput(float forwardInput)
     {
-        // Debug.Log("Setting forward input to: " + forwardInput);
+        //Debug.Log("Setting forward input to: " + forwardInput);
         SetValue<float>("ForwardInput", forwardInput);
     }
 
