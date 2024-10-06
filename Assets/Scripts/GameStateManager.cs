@@ -128,7 +128,7 @@ public class GameStateManager : MonoBehaviour
                 playerController.setStarted(); // Set XR Rig on Fixed Axis
                 break;
             case 4: // Set 1s - Curl
-
+                handGestureTracking.SetActive(false);
                 // Generate the next state using the first row of csvData
                 if (csvDataIndex < csvData.GetLength(1)) // Ensure index is within bounds
                 {
@@ -148,11 +148,11 @@ public class GameStateManager : MonoBehaviour
                     else if (exerciseState == 1)
                     {
                         generateNextState(incrementCode, exerciseState);
-                        repDetectionOn = false;
-                        holdDetectionOn = true;
-                        activateHoldVisual();
                         hideCurlShadows();
+                        holdDetectionOn = true;
+                        repDetectionOn = false;
                         activateHoldTimer();
+                        activateHoldVisual();
 
                     } else if (exerciseState == 2)
                     {
@@ -326,7 +326,7 @@ public class GameStateManager : MonoBehaviour
 
     public void incrementFallTmr()
     {
-        fallTimer = fallTimer + 0.025f;
+        fallTimer = fallTimer + 0.1f;
         //Debug.Log(fallTimer.ToString());
     }
 
@@ -492,7 +492,6 @@ public class GameStateManager : MonoBehaviour
     {
         handGestureTracking.SetActive(false);
     }
-
 
     public void reverseState()
     {

@@ -16,6 +16,7 @@ public class CheckHold : MonoBehaviour
     void Update()
     {
         // Continuously increment fall timer if the dumbbell is not being held
+        Debug.Log("WE ARE HERE");
         if (StateManager.checkHoldDetectionOn() && !isHolding)
         {
             StateManager.incrementFallTmr();

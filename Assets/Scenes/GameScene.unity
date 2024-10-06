@@ -5097,8 +5097,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.429591, y: 0.23322761, z: 0.29809287}
-  m_Center: {x: -0.03205669, y: 0.0045000464, z: -0.01843746}
+  m_Size: {x: 0.35, y: 0.1, z: 0.29809287}
+  m_Center: {x: -0, y: 0.0045000464, z: -0.01843746}
 --- !u!54 &938199036
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8806,7 +8806,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.34, y: 0.2, z: 0.2980929}
+  m_Size: {x: 0.32, y: 0.1, z: 0.2980929}
   m_Center: {x: 0, y: 0.004500046, z: -0.01843746}
 --- !u!54 &1551937629
 Rigidbody:
@@ -10839,7 +10839,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.37, y: 0.18, z: 0.29809287}
+  m_Size: {x: 0.37, y: 0.25, z: 0.29809287}
   m_Center: {x: -0, y: 0.0045000464, z: -0.01843746}
 --- !u!54 &1797108189
 Rigidbody:
@@ -16851,6 +16851,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5519324756931869479}
+  - component: {fileID: 5519324756931869482}
+  - component: {fileID: 5519324756931869481}
+  - component: {fileID: 5519324756931869480}
   m_Layer: 0
   m_Name: bar_b
   m_TagString: Untagged
@@ -20841,7 +20844,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4711754021537967878}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 13ed71851816a6043aec4675cceaac1a, type: 3}
@@ -21087,6 +21090,59 @@ Transform:
   - {fileID: 3669202679967918671}
   m_Father: {fileID: 1356318088}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5519324756931869480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2570185361844097855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14307e40618028c4db3956b67814fb3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdingDumbbell: {fileID: 1797108187}
+  StateManager: {fileID: 382339326}
+--- !u!114 &5519324756931869481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2570185361844097855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42569995a64a3e4dad6f2ed448704ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startDumbell: {fileID: 938199034}
+  endDumbell: {fileID: 1551937627}
+  reps: 0
+  startReached: 0
+  repCountedSound: {fileID: 5343613304109118911}
+  StateManager: {fileID: 382339326}
+--- !u!65 &5519324756931869482
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2570185361844097855}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.31, y: 0.19, z: 0.22}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &5520875972251298977
 Transform:
   m_ObjectHideFlags: 0
@@ -21778,6 +21834,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4389583907134338096}
+  - component: {fileID: 6041959510788168747}
+  - component: {fileID: 6041959510788168746}
+  - component: {fileID: 6041959510788168745}
   m_Layer: 0
   m_Name: bar_s
   m_TagString: Untagged
@@ -21785,6 +21844,59 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &6041959510788168745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6041959510788168744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14307e40618028c4db3956b67814fb3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdingDumbbell: {fileID: 1797108187}
+  StateManager: {fileID: 382339326}
+--- !u!114 &6041959510788168746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6041959510788168744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42569995a64a3e4dad6f2ed448704ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startDumbell: {fileID: 938199034}
+  endDumbell: {fileID: 1551937627}
+  reps: 0
+  startReached: 0
+  repCountedSound: {fileID: 5343613304109118911}
+  StateManager: {fileID: 382339326}
+--- !u!65 &6041959510788168747
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6041959510788168744}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.31, y: 0.19, z: 0.22}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &6042332977225069665
 Transform:
   m_ObjectHideFlags: 0
@@ -22574,6 +22686,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3669628339398671817}
+  - component: {fileID: 6764009646027003348}
+  - component: {fileID: 6764009646027003347}
+  - component: {fileID: 6764009646027003346}
   m_Layer: 0
   m_Name: bar_n
   m_TagString: Untagged
@@ -22581,6 +22696,59 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &6764009646027003346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6764009646027003345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14307e40618028c4db3956b67814fb3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdingDumbbell: {fileID: 1797108187}
+  StateManager: {fileID: 382339326}
+--- !u!114 &6764009646027003347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6764009646027003345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42569995a64a3e4dad6f2ed448704ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startDumbell: {fileID: 938199034}
+  endDumbell: {fileID: 1551937627}
+  reps: 0
+  startReached: 0
+  repCountedSound: {fileID: 5343613304109118911}
+  StateManager: {fileID: 382339326}
+--- !u!65 &6764009646027003348
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6764009646027003345}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.31, y: 0.19, z: 0.22}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6799136420348050890
 GameObject:
   m_ObjectHideFlags: 0
