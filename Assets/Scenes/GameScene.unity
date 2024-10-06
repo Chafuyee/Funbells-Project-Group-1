@@ -20028,7 +20028,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.31, y: 0.19, z: 0.22}
+  m_Size: {x: 0.31, y: 0.09, z: 0.22}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &4937855632802382744
 Transform:
@@ -21141,7 +21141,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.31, y: 0.19, z: 0.22}
+  m_Size: {x: 0.31, y: 0.09, z: 0.22}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &5520875972251298977
 Transform:
@@ -21895,7 +21895,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.31, y: 0.19, z: 0.22}
+  m_Size: {x: 0.31, y: 0.07, z: 0.22}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &6042332977225069665
 Transform:
@@ -22079,7 +22079,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.31, y: 0.19, z: 0.22}
+  m_Size: {x: 0.31, y: 0.08, z: 0.22}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &6164926992137435497
 MeshFilter:
@@ -22556,7 +22556,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.31, y: 0.19, z: 0.22}
+  m_Size: {x: 0.31, y: 0.12, z: 0.22}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6667512316248244205
 GameObject:
@@ -22628,7 +22628,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.31, y: 0.19, z: 0.22}
+  m_Size: {x: 0.31, y: 0.1, z: 0.22}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &6692149105283217146
 Transform:
@@ -22747,7 +22747,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.31, y: 0.19, z: 0.22}
+  m_Size: {x: 0.31, y: 0.06, z: 0.22}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6799136420348050890
 GameObject:
@@ -23763,7 +23763,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.31, y: 0.19, z: 0.22}
+  m_Size: {x: 0.31, y: 0.12, z: 0.22}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7416458280968985298
 GameObject:
@@ -23835,7 +23835,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.31, y: 0.19, z: 0.22}
+  m_Size: {x: 0.31, y: 0.13, z: 0.22}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &7428893135436333404
 MeshFilter:
@@ -24812,7 +24812,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.31, y: 0.19, z: 0.22}
+  m_Size: {x: 0.31, y: 0.1, z: 0.22}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &8188610169668054821
 Transform:
@@ -25363,7 +25363,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.31, y: 0.19, z: 0.22}
+  m_Size: {x: 0.31, y: 0.07, z: 0.22}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &8588728344241933490
 Transform:
