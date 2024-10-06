@@ -147,6 +147,7 @@ public class GameStateManager : MonoBehaviour
                     }
                     else if (exerciseState == 1)
                     {
+                        generateNextState(incrementCode, exerciseState);
                         repDetectionOn = false;
                         holdDetectionOn = true;
                         activateHoldVisual();
@@ -210,7 +211,7 @@ public class GameStateManager : MonoBehaviour
         {
             if (exerciseType == 0)
             {
-                processedName = "1.25" + weightName.Substring(4);
+                processedName = "2" + weightName.Substring(4);
             }
             else
             {
@@ -221,22 +222,22 @@ public class GameStateManager : MonoBehaviour
         {
             if (exerciseType == 0)
             {
-                processedName = "2.5" + weightName.Substring(4);
+                processedName = "3" + weightName.Substring(4);
             }
             else
             {
-                processedName = "1.25" + weightName.Substring(4);
+                processedName = "2" + weightName.Substring(4);
             }
         }
         else if (weightName.Substring(0, 4) == "3.75")
         {
             if (exerciseType == 0)
             {
-                processedName = weightName;
+                processedName = "5.25" + weightName.Substring(4);
             }
             else
             {
-                processedName = "2.5" + weightName.Substring(4);
+                processedName = "3" + weightName.Substring(4);
             }
         }
 
