@@ -134,7 +134,7 @@ public class GameStateManager : MonoBehaviour
                 // Generate the next state using the first row of csvData
                 if (csvDataIndex < csvData.GetLength(1)) // Ensure index is within bounds
                 {
-                    string incrementCode = csvData[1, csvDataIndex];
+                    string incrementCode = csvData[3, csvDataIndex];
                     //Debug.Log(incrementCode);
                     generateNextState(incrementCode, exerciseState);
                     setExerciseOn(exerciseState);
