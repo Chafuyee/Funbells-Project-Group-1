@@ -16,6 +16,8 @@ public class CheckHold : MonoBehaviour
     void Update()
     {
         // Continuously increment fall timer if the dumbbell is not being held
+        // StateManager.checkHoldDetectionOn() &&
+        Debug.Log("HOLD DETECTION:" + StateManager.checkHoldDetectionOn());
         if (StateManager.checkHoldDetectionOn() && !isHolding)
         {
             StateManager.incrementFallTmr();
@@ -58,6 +60,7 @@ public class CheckHold : MonoBehaviour
             {
                 fallTimerCoroutine = StartCoroutine(StartFallTimer());
             }
+            Debug.Log("DUMBELL HAS EXITED TRIGGER");
             isHolding = false;  // Set holding flag to false when exiting
         }
     }
