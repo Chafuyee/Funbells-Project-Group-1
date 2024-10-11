@@ -20,6 +20,7 @@ public class GameStateManager : MonoBehaviour
 
     public GameObject wristButtonUI;
 
+    private bool onOriginal = true;
     private int exerciseState = 0;
 
     public GameObject currentActive;
@@ -131,13 +132,13 @@ public class GameStateManager : MonoBehaviour
                 break;
             case 4: // Set 1s - Curl
                 handGestureTracking.SetActive(false); // DISABLE CALIBRATION
+                setExerciseOn(exerciseState);
                 // Generate the next state using the first row of csvData
                 if (csvDataIndex < csvData.GetLength(1)) // Ensure index is within bounds
                 {
-                    string incrementCode = csvData[4, csvDataIndex];
+                    string incrementCode = csvData[0, csvDataIndex];
                     //Debug.Log(incrementCode);
                     generateNextState(incrementCode, exerciseState);
-                    setExerciseOn(exerciseState);
                     // CODE FOR CURL EXERCISE FOLLOWED BY HOLD EXERCISE
                     if (exerciseState == 0)
                     {
@@ -297,7 +298,17 @@ public class GameStateManager : MonoBehaviour
 
             if (lastActive != null)
             {
-                originalDumbell.SetActive(false);
+                //originalDumbell.GetComponent<Renderer>().enabled = false;
+                // Get all MeshRenderer components in the children of the target object
+                
+                //MeshRenderer[] childRenderers = originalDumbell.GetComponentsInChildren<MeshRenderer>();
+
+                // Disable each MeshRenderer found in the children
+                //foreach (MeshRenderer renderer in childRenderers)
+                //{
+                //    renderer.enabled = false;
+                //}
+                
                 lastActive.SetActive(false);
                 currentActive.SetActive(true);
             }
@@ -349,7 +360,7 @@ public class GameStateManager : MonoBehaviour
     public void incrementMoveTmr()
     {
         //Debug.Log("MOVE TIMER HERE");
-        moveTimer = moveTimer + 0.25f;
+        moveTimer = moveTimer + 0.75f;
     }
 
     public void moveForward()
@@ -369,7 +380,7 @@ public class GameStateManager : MonoBehaviour
 
     public void incrementFallTmr()
     {
-        fallTimer = fallTimer + 0.025f;
+        fallTimer = fallTimer + 0.01f;
         //Debug.Log(fallTimer.ToString());
     }
 
