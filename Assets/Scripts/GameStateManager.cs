@@ -20,7 +20,6 @@ public class GameStateManager : MonoBehaviour
 
     public GameObject wristButtonUI;
 
-    private bool onOriginal = true;
     private int exerciseState = 0;
 
     public GameObject currentActive;
@@ -119,7 +118,7 @@ public class GameStateManager : MonoBehaviour
                 break;
             case 2: // Calibration step : HOLDS
                 activateHoldCalibrationHints();
-                //hideCurlShadows();
+                hideCurlShadows();
                 repDetectionOn = false;
                 holdDetectionOn = false;
                 break;
@@ -136,7 +135,7 @@ public class GameStateManager : MonoBehaviour
                 // Generate the next state using the first row of csvData
                 if (csvDataIndex < csvData.GetLength(1)) // Ensure index is within bounds
                 {
-                    string incrementCode = csvData[0, csvDataIndex];
+                    string incrementCode = csvData[1, csvDataIndex];
                     //Debug.Log(incrementCode);
                     generateNextState(incrementCode, exerciseState);
                     // CODE FOR CURL EXERCISE FOLLOWED BY HOLD EXERCISE
@@ -294,22 +293,23 @@ public class GameStateManager : MonoBehaviour
         {
             currentActive = nextWeight;
             currentActive.SetActive(true);
+            originalDumbell.SetActive(true); // NEW LINE
             //Debug.Log("HERE IS CURRENT:" + currentActive.name);
 
             if (lastActive != null)
             {
-                //originalDumbell.GetComponent<Renderer>().enabled = false;
                 // Get all MeshRenderer components in the children of the target object
                 
-                //MeshRenderer[] childRenderers = originalDumbell.GetComponentsInChildren<MeshRenderer>();
+                MeshRenderer[] childRenderers = originalDumbell.GetComponentsInChildren<MeshRenderer>();
 
                 // Disable each MeshRenderer found in the children
-                //foreach (MeshRenderer renderer in childRenderers)
-                //{
-                //    renderer.enabled = false;
-                //}
+                foreach (MeshRenderer renderer in childRenderers)
+                {
+                    renderer.enabled = false;
+                }
                 
                 lastActive.SetActive(false);
+                originalDumbell.SetActive(true); // NEW LINE
                 currentActive.SetActive(true);
             }
         }
@@ -345,6 +345,10 @@ public class GameStateManager : MonoBehaviour
     {
         Debug.Log("STATE REP ADDED");
         stateReps++;
+        if (stateReps > 0)
+        {
+            stateReps = stateReps / 2;
+        }
     }
 
     public bool checkRepDetectionOn()
