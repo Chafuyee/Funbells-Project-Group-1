@@ -345,10 +345,6 @@ public class GameStateManager : MonoBehaviour
     {
         Debug.Log("STATE REP ADDED");
         stateReps++;
-        if (stateReps > 0)
-        {
-            stateReps = stateReps / 2;
-        }
     }
 
     public bool checkRepDetectionOn()
